@@ -1,0 +1,122 @@
+<div class="container">
+
+<nz-table #middleTable nzSize="middle" [nzData]="this.Drzave" 
+style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+  <thead>
+    <tr>
+        <th> naziv_drzave     </th>
+        <th> glavni_grad      </th>
+        <th>sluzbeni_jezik    </th>
+        <th>predsjednik       </th>
+        <th>predsjednik_vlade </th>
+        <th>neovisnost        </th>
+        <th>povrsina          </th>
+        <th>stanovnistvo      </th>
+        <th>valuta            </th>
+        <th>pozivni_broj      </th>
+        <th>sluzbena_stranica </th>
+        <th> <button nz-button nzType="primary" (click)="this.drzaveRedirect()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let drzava of middleTable.data">
+       
+      <td>{{ drzava.naziv_drzave }}     </td>
+      <td>{{ drzava.glavni_grad }}      </td>
+      <td>{{ drzava.sluzbeni_jezik }}   </td>
+      <td>{{ drzava.predsjednik }}      </td>
+      <td>{{ drzava.predsjednik_vlade }}</td>
+      <td>{{ drzava.neovisnost }}       </td>
+      <td>{{ drzava.povrsina }}         </td>
+      <td>{{ drzava.stanovnistvo }}     </td>
+      <td>{{ drzava.valuta }}           </td>
+      <td>{{ drzava.pozivni_broj }}     </td>
+      <td>{{ drzava.sluzbena_stranica }}</td>
+      <td>
+       
+        <button nz-button nzType="primary" (click)="this.submitPodatak(drzava.id,1)"nzShape="circle" style="background-color:yellow;"  >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+        <button nz-button nzType="primary" (click)="this.brisiPodatak(drzava.id,1)"  nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+      </td>
+
+    
+      
+    </tr>
+  </tbody>
+</nz-table>
+
+
+  <button (click)="this.nazad()" nz-button style="background-color: red;">Nazad</button>
+
+
+</div>
+
+
+
+
+<div class="container">
+
+
+  <nz-table #basicTable [nzData]="this.Gradovi"
+  style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+   
+    <thead>
+      <tr>
+        <th>id_drzave       </th>
+        <th>naziv_grada     </th>
+        <th>gradonacelnik   </th>
+        <th>nadmorska_visina</th>
+        <th>povrsina        </th>
+        <th>stanovnistvo    </th>
+        <th>postanski_broj  </th>
+        <th>pozivni_broj    </th>
+        <th><button nz-button nzType="primary" (click)="this.gradRedirect()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+      </tr>
+    </thead>
+    <tbody >
+       <tr *ngFor="let grad of basicTable.data">
+        <td>{{ this.getNazivDrzave(grad.id_drzave) }}</td>
+        <td>{{ grad.naziv_grada }}     </td>
+        <td>{{ grad.gradonacelnik }}   </td>
+        <td>{{ grad.nadmorska_visina }}</td>
+        <td>{{ grad.povrsina }}        </td>
+        <td>{{ grad.stanovnistvo }}    </td>
+        <td>{{ grad.postanski_broj }}  </td>
+        <td>{{ grad.pozivni_broj }}  </td>
+  
+        <td>
+          <button nz-button nzType="primary" (click)="this.submitPodatak(grad.id,2)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+          <button nz-button nzType="primary" (click)="this.brisiPodatak(grad.id,2)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+        </td>
+  
+      </tr>
+    </tbody>
+  </nz-table>
+
+</div>
+
+
+
+<div class="container">
+
+  
+  <nz-table #basicTable [nzData]="this.Gradovi"
+  style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+  
+    <thead>
+      <tr>
+        <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostRedirect()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+      </tr>
+    </thead>
+
+    <tbody >
+      <tr >
+        <td></td>
+        
+      </tr>
+    </tbody>
+  </nz-table>
+
+</div>
+
+<div><p>.</p></div>
+

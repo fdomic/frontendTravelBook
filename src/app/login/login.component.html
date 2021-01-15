@@ -1,0 +1,86 @@
+<div class="containerS">	
+	<div id="1" class="divText"    >
+		<div class="row">
+			<div class="col col1" >
+				<div class="text">
+					<h1></h1>
+					<p></p>
+				</div>
+				<a href="login#2" >ISTRAŽI</a>	
+			</div>
+			
+			<div class="col" >
+				<a href="login#2" > <div class="card card1" > <h2>Znamenitosti</h2>  </div> </a>
+				<a href="login#2" > <div class="card card2" > <h2>Muzeji</h2>        </div> </a>
+				<a href="login#2" > <div class="card card3" > <h2>Opere</h2>         </div> </a>
+				<a href="login#2" > <div class="card card4" > <h2>Dvorci</h2>        </div> </a>
+			</div>
+		</div>	
+  	</div>
+  
+	<div id="2" class="divLogin">
+		<div [class.right-panel-active]="this.isRight" class="container" id="container">
+			<div class="form-container sign-up-container">
+				<form action="#">
+					<h1>Kreiraj račun</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i nz-icon nzType="facebook"    nzTheme="outline"></i></a>
+						<a href="#" class="social"><i nz-icon nzType="google-plus" nzTheme="outline"></i></a>
+						<a href="#" class="social"><i nz-icon nzType="twitter"     nzTheme="outline"></i></a>
+			        </div>
+				
+
+			    <span>Ili koristite svoje podatke</span>
+				
+				<form class="box" #loginForm="ngForm" (ngSubmit)="onSubmitCreateUser()">
+					<input  type="text"     name="name" [(ngModel)]="form.name"         placeholder="Ime"/>
+					<input  type="text"     name="email" [(ngModel)]="form.email"       placeholder="Email"/>
+					<input  type="password" name="password" [(ngModel)]="form.password" placeholder="Password"/>
+					<button type="submit"  class="btn btn-success" value="Login">Kreiraj</button>
+				</form>
+				
+			</form>
+			</div>
+
+
+			<div class="form-container sign-in-container">
+				<form action="#">
+					<h1 style="color: black; ">Prijavi se!</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i nz-icon nzType="facebook"    nzTheme="outline"></i></a>
+						<a href="#" class="social"><i nz-icon nzType="google-plus" nzTheme="outline"></i></a>
+						<a href="#" class="social"><i nz-icon nzType="twitter"     nzTheme="outline"></i></a>
+					</div>
+				
+				
+				<span>Ili koristite svoje podatke</span>
+
+				<form class="box" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+						<input  type="text"     name="email" [(ngModel)]="form.email"       placeholder="Email"/>
+						<input  type="password" name="password" [(ngModel)]="form.password" placeholder="Password" />
+						<button type="submit" class="btn btn-success" value="Login">Prijava</button>
+				</form>
+
+			</form>
+			</div>
+
+			<div class="overlay-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-left">
+				
+						<h1 style="color:black; ">Odlično, novi putolovac!</h1>
+						<p style="color: black;">Ako si predao svoje podatke sada si postao član naše TravlBook zajednice klikni ispod da bi se vratio nazad za prijavu</p>
+						<button class="ghost" id="signIn" style="color: black;" (click)="this.onPanelChangeBtnClick(false)" >Prijava</button>
+					</div>
+					
+					<div class="overlay-panel overlay-right">
+						<h1 style="color: black;">Pozdrav, putolovče!</h1>
+						<p style="color: black;"> Ako nikad nisi koristio ovu aplikaciju prvo napravi svoj korisniči račun</p>
+						<button class="ghost" id="signUp" style="color: black;"  (click)="this.onPanelChangeBtnClick(true)">Kreiraj</button>
+					</div>
+			    </div>
+			</div>
+        </div>
+    </div>
+</div>
+

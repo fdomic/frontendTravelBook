@@ -1,0 +1,82 @@
+<form nz-form [formGroup]="this.validateForm" >
+    
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_drzave">id_drzave</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+          <input nz-input formControlName="id_drzave" id="id_drzave" />
+        </nz-form-control>
+    </nz-form-item>    
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="naziv_grada">naziv_grada</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+          <input nz-input formControlName="naziv_grada" id="naziv_grada" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gradonacelnik">gradonacelnik</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="gradonacelnik" id="gradonacelnik" />
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nadmorska_visina">nadmorska_visina</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="nadmorska_visina" id="nadmorska_visina" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="povrsina">povrsina</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="povrsina" id="povrsina" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="stanovnistvo">stanovnistvo</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="stanovnistvo" id="stanovnistvo" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postanski_broj">postanski_broj</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="postanski_broj" id="postanski_broj" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="pozivni_broj">pozivni_broj</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="pozivni_broj" id="pozivni_broj" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="slika">slika</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="slika" id="slika" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="kordinate">kordinate</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+        <input nz-input formControlName="kordinate" id="kordinate" />
+      </nz-form-control>
+    </nz-form-item>
+    
+
+    
+    <button (click)="this.forma()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
+    <button (click)="this.submitFormKreirajGrad()" nz-button class="login-form-button login-form-margin">Spremi</button>
+    
+    <button (click)="this.submitFormNadiGrad()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
+    <button (click)="this.submitFormAzurirajGrad()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+    
+</form>
