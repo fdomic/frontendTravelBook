@@ -8,6 +8,10 @@ import { KreirajUserInterface } from "./interface/KreirajUserInterface";
 import { KreirajDrzavuInterface } from "./interface/KreirajDrzavuInterface";
 import { KreirajPoznatuZnamenitostInterface } from "./interface/KreirajPoznatuZnamenitostInterface";
 import { KreirajGradInterface } from "./interface/KreirajGradInterface";
+import { KreirajMuzejInterface } from "./interface/KreirajMuzejInterface";
+import { KreirajKazalistaInterface } from "./interface/KreirajKazalistaInterface";
+import { KreirajDvoracInterface } from "./interface/KreirajDvoracInterface";
+import { KreirajKlubInterface } from "./interface/KreirajKlubInterface";
 
 
 
@@ -170,7 +174,7 @@ export class ApiService {
     postanski_broj:   number,
     pozivni_broj:     number,
     slika:            string,
-    kordinate:        string,
+    sluzbena_stranica:string,
     id?:              number
 
   ): Observable<KreirajGradInterface> {
@@ -184,7 +188,7 @@ export class ApiService {
       postanski_broj:   postanski_broj,
       pozivni_broj:     pozivni_broj,
       slika:            slika,
-      kordinate:        kordinate,
+      sluzbena_stranica:sluzbena_stranica,
     };
     if (id) payload["id"] = id;
     
@@ -204,7 +208,7 @@ export class ApiService {
     postanski_broj?:   number,
     pozivni_broj?:     number,
     slika?:            string,
-    kordinate?:        string,
+    sluzbena_stranica?:string,
     id?:               number
 
   ): Observable<KreirajGradInterface> {
@@ -221,7 +225,7 @@ export class ApiService {
       if (postanski_broj)    payload["postanski_broj"] = postanski_broj;
       if (pozivni_broj)      payload["pozivni_broj"] = pozivni_broj;
       if (slika)             payload["slika"] = slika;
-      if (kordinate)         payload["kordinate"] = kordinate;
+      if (sluzbena_stranica) payload["sluzbena_stranica"] = sluzbena_stranica;
 
       return <any> this.http.post(this.url + "/gradovi", payload, this.getHttpOptions()).pipe(tap( () => {} ));
   }
@@ -245,7 +249,7 @@ export class ApiService {
    // Kreiraj novu poznate-znamenitosti
    public kreirajPoznatuZnamenitost(
 
-    id_drzave:        number,
+    id_grada:        number,
     ime_gradevine:    string,
     arhitekt:         string,	
     godina_izgradnje: string,
@@ -260,7 +264,7 @@ export class ApiService {
 
   ): Observable<KreirajPoznatuZnamenitostInterface> {
     let payload = {
-      id_drzave:        id_drzave,
+      id_grada:        id_grada,
       ime_gradevine:    ime_gradevine,
       arhitekt:         arhitekt,	
       godina_izgradnje: godina_izgradnje,
@@ -279,7 +283,7 @@ export class ApiService {
   // Azuriraj podatak za poznate-znamenitosti
   public azurirajPoznatuZnamenitost ( 
     
-    id_drzave:        string,
+    id_grada:        string,
     ime_gradevine:    string,
     arhitekt:         string,	
     godina_izgradnje: string,
@@ -295,7 +299,7 @@ export class ApiService {
         
       };
       if (id)                payload["id"] = id;
-      if (id_drzave)         payload["id_drzave"] = id_drzave;
+      if (id_grada)         payload["id_grada"] = id_grada;
       if (ime_gradevine)     payload["ime_gradevine"] = ime_gradevine; 
       if (arhitekt)          payload["arhitekt"] =  arhitekt;
       if (godina_izgradnje)  payload["godina_izgradnje"] = godina_izgradnje;
@@ -312,6 +316,336 @@ export class ApiService {
   public obrisiPoznatuZnamenitost(id:number): Observable<KreirajPoznatuZnamenitostInterface> {
     return <any> this.http.delete(this.url + "/poznate-znamenitosti/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
   }
+
+  //------------------Dvorci-----------------------------------------------------------------------
+
+  // Dohvati sve podatke za dvorci
+  public dohvatiDvorce(id?: number):Observable<any>{ 
+
+    if (id) return <any> this.http.get(this.url + "/dvorci/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
+
+    return <any> this.http.get(this.url + "/dvorci", this.getHttpOptions()).pipe(tap( () => {} ));
+    
+  }
+
+   // Kreiraj novu Dvorac
+   public kreirajDvorac(
+
+    id_grada:        number,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+
+
+  ): Observable<KreirajDvoracInterface> {
+    let payload = {
+      id_grada:        id_grada,
+      ime_gradevine:    ime_gradevine,
+      arhitekt:         arhitekt,	
+      godina_izgradnje: godina_izgradnje,
+      opis_kraci:       opis_kraci,	
+      opis_duzi:        opis_duzi,
+      adresa:           adresa,
+      sluzbena_stranica:sluzbena_stranica,
+      slika:            slika,
+    };
+    if (id) payload["id"] = id;
+    
+    return <any> this.http.post(this.url + "/dvorci", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+   
+  }
+
+  // Azuriraj podatak za poznate-znamenitosti
+  public azurirajDvorac ( 
+    
+    id_grada?:         string,
+    ime_gradevine?:    string,
+    arhitekt?:         string,	
+    godina_izgradnje?: string,
+    opis_kraci?:       string,	
+    opis_duzi?:        string,
+    adresa?:           string,
+    sluzbena_stranica?:string,
+    slika?:            string,
+    id?:               number
+
+  ): Observable<KreirajDvoracInterface> {
+      let payload = {
+        
+      };
+      if (id)                payload["id"] = id;
+      if (id_grada)          payload["id_grada"] = id_grada;
+      if (ime_gradevine)     payload["ime_gradevine"] = ime_gradevine; 
+      if (arhitekt)          payload["arhitekt"] =  arhitekt;
+      if (godina_izgradnje)  payload["godina_izgradnje"] = godina_izgradnje;
+      if (opis_kraci)        payload["opis_kraci"] = opis_kraci;
+      if (opis_duzi)         payload["opis_duzi"] = opis_duzi;
+      if (adresa)            payload["adresa"] = adresa;
+      if (sluzbena_stranica) payload["sluzbena_stranica"] = sluzbena_stranica;
+      if (slika)             payload["slika"] = slika;
+
+      return <any> this.http.post(this.url + "/dvorci", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //Obrisi dvorci
+  public obrisiDvorac(id:number): Observable<KreirajDvoracInterface> {
+    return <any> this.http.delete(this.url + "/dvorci/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+
+  //------------------Muzeji-----------------------------------------------------------------------
+
+  // Dohvati sve podatke za muzeji
+  public dohvatiMuzeje(id?: number):Observable<any>{ 
+
+    if (id) return <any> this.http.get(this.url + "/muzeji/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
+
+    return <any> this.http.get(this.url + "/muzeji", this.getHttpOptions()).pipe(tap( () => {} ));
+    
+  }
+
+   // Kreiraj novu muzej
+   public kreirajMuzej(
+
+    id_grada:        number,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+
+
+  ): Observable<KreirajMuzejInterface> {
+    let payload = {
+      id_grada:        id_grada,
+      ime_gradevine:    ime_gradevine,
+      arhitekt:         arhitekt,	
+      godina_izgradnje: godina_izgradnje,
+      opis_kraci:       opis_kraci,	
+      opis_duzi:        opis_duzi,
+      adresa:           adresa,
+      sluzbena_stranica:sluzbena_stranica,
+      slika:            slika,
+    };
+    if (id) payload["id"] = id;
+    
+    return <any> this.http.post(this.url + "/muzeji", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+   
+  }
+
+  // Azuriraj podatak za poznate-znamenitosti
+  public azurirajMuzej( 
+    
+    id_grada?:         string,
+    ime_gradevine?:    string,
+    arhitekt?:         string,	
+    godina_izgradnje?: string,
+    opis_kraci?:       string,	
+    opis_duzi?:        string,
+    adresa?:           string,
+    sluzbena_stranica?:string,
+    slika?:            string,
+    id?:               number
+
+  ): Observable<KreirajMuzejInterface> {
+      let payload = {
+        
+      };
+      if (id)                payload["id"] = id;
+      if (id_grada)          payload["id_grada"] = id_grada;
+      if (ime_gradevine)     payload["ime_gradevine"] = ime_gradevine; 
+      if (arhitekt)          payload["arhitekt"] =  arhitekt;
+      if (godina_izgradnje)  payload["godina_izgradnje"] = godina_izgradnje;
+      if (opis_kraci)        payload["opis_kraci"] = opis_kraci;
+      if (opis_duzi)         payload["opis_duzi"] = opis_duzi;
+      if (adresa)            payload["adresa"] = adresa;
+      if (sluzbena_stranica) payload["sluzbena_stranica"] = sluzbena_stranica;
+      if (slika)             payload["slika"] = slika;
+
+      return <any> this.http.post(this.url + "/muzeji", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //Obrisi muzeji
+  public obrisiMuzej(id:number): Observable<KreirajMuzejInterface> {
+    return <any> this.http.delete(this.url + "/muzeji/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //------------------Klubovi-----------------------------------------------------------------------
+
+  // Dohvati sve podatke za klubove
+  public dohvatiKlubove(id?: number):Observable<any>{ 
+
+    if (id) return <any> this.http.get(this.url + "/klubovi/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
+
+    return <any> this.http.get(this.url + "/klubovi", this.getHttpOptions()).pipe(tap( () => {} ));
+    
+  }
+
+   // Kreiraj novi klub
+   public kreirajKlub(
+
+    id_grada:        number,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+
+
+  ): Observable<KreirajKlubInterface> {
+    let payload = {
+      id_grada:        id_grada,
+      ime_gradevine:    ime_gradevine,
+      arhitekt:         arhitekt,	
+      godina_izgradnje: godina_izgradnje,
+      opis_kraci:       opis_kraci,	
+      opis_duzi:        opis_duzi,
+      adresa:           adresa,
+      sluzbena_stranica:sluzbena_stranica,
+      slika:            slika,
+    };
+    if (id) payload["id"] = id;
+    
+    return <any> this.http.post(this.url + "/klubovi", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+   
+  }
+
+  // Azuriraj podatak za klub
+  public azurirajKlub( 
+    
+    id_grada:         string,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+  ): Observable<KreirajKlubInterface> {
+      let payload = {
+        
+      };
+      if (id)                payload["id"] = id;
+      if (id_grada)          payload["id_grada"] = id_grada;
+      if (ime_gradevine)     payload["ime_gradevine"] = ime_gradevine; 
+      if (arhitekt)          payload["arhitekt"] =  arhitekt;
+      if (godina_izgradnje)  payload["godina_izgradnje"] = godina_izgradnje;
+      if (opis_kraci)        payload["opis_kraci"] = opis_kraci;
+      if (opis_duzi)         payload["opis_duzi"] = opis_duzi;
+      if (adresa)            payload["adresa"] = adresa;
+      if (sluzbena_stranica) payload["sluzbena_stranica"] = sluzbena_stranica;
+      if (slika)             payload["slika"] = slika;
+
+      return <any> this.http.post(this.url + "/klubovi", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //Obrisi klubove
+  public obrisiKlub(id:number): Observable<KreirajKlubInterface> {
+    return <any> this.http.delete(this.url + "/klubovi/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //------------------Kazalista-----------------------------------------------------------------------
+
+  // Dohvati sve podatke za kazalista
+  public dohvatiKazalista(id?: number):Observable<any>{ 
+
+    if (id) return <any> this.http.get(this.url + "/kazalista/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
+
+    return <any> this.http.get(this.url + "/kazalista", this.getHttpOptions()).pipe(tap( () => {} ));
+    
+  }
+
+   // Kreiraj novo kazaliste
+   public kreirajKazaliste(
+
+    id_grada:        number,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+
+
+  ): Observable<KreirajKazalistaInterface> {
+    let payload = {
+      id_grada:        id_grada,
+      ime_gradevine:    ime_gradevine,
+      arhitekt:         arhitekt,	
+      godina_izgradnje: godina_izgradnje,
+      opis_kraci:       opis_kraci,	
+      opis_duzi:        opis_duzi,
+      adresa:           adresa,
+      sluzbena_stranica:sluzbena_stranica,
+      slika:            slika,
+    };
+    if (id) payload["id"] = id;
+    
+    return <any> this.http.post(this.url + "/kazalista", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+   
+  }
+
+  // Azuriraj podatak za kazaliste
+  public azurirajKazaliste ( 
+    
+    id_grada:        string,
+    ime_gradevine:    string,
+    arhitekt:         string,	
+    godina_izgradnje: string,
+    opis_kraci:       string,	
+    opis_duzi:        string,
+    adresa:           string,
+    sluzbena_stranica:string,
+    slika:            string,
+    id?:              number
+
+  ): Observable<KreirajKazalistaInterface> {
+      let payload = {
+        
+      };
+      if (id)                payload["id"] = id;
+      if (id_grada)          payload["id_grada"] = id_grada;
+      if (ime_gradevine)     payload["ime_gradevine"] = ime_gradevine; 
+      if (arhitekt)          payload["arhitekt"] =  arhitekt;
+      if (godina_izgradnje)  payload["godina_izgradnje"] = godina_izgradnje;
+      if (opis_kraci)        payload["opis_kraci"] = opis_kraci;
+      if (opis_duzi)         payload["opis_duzi"] = opis_duzi;
+      if (adresa)            payload["adresa"] = adresa;
+      if (sluzbena_stranica) payload["sluzbena_stranica"] = sluzbena_stranica;
+      if (slika)             payload["slika"] = slika;
+
+      return <any> this.http.post(this.url + "/kazalista", payload, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
+  //Obrisi kazalista
+  public obrisiKazaliste(id:number): Observable<KreirajKazalistaInterface> {
+    return <any> this.http.delete(this.url + "/kazalista/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
+  }
+
 
 
   //-----------------------------------------------------------------------------------------

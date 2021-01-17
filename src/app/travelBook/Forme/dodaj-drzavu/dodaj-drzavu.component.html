@@ -1,3 +1,5 @@
+
+<div class="container">
 <form nz-form [formGroup]="this.validateForm" >
     
     <nz-form-item>
@@ -38,21 +40,45 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="neovisnost">neovisnost</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="neovisnost" id="neovisnost" />
+        <nz-date-picker nz-input formControlName="neovisnost" id="neovisnost"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="povrsina">povrsina</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="povrsina" id="povrsina" />
+        
+
+        <nz-input-number
+        
+        [(ngModel)]="ValuePovrsina"
+        [nzMin]="0"
+        [nzMax]="100000000000"
+        [nzStep]="0.1"
+        [nzFormatter]="formatterKM"
+        [nzParser]="parserKM"
+        formControlName="povrsina"
+        id="povrsina"
+        ></nz-input-number>
+
+
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="stanovnistvo">stanovnistvo</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="stanovnistvo" id="stanovnistvo" />
+
+        <nz-input-number
+        
+        [(ngModel)]="ValueStanovnistvo"
+        [nzMin]="0"
+        [nzMax]="100000000000"
+        [nzStep]="0.1"
+        formControlName="stanovnistvo"
+        id="stanovnistvo"
+        ></nz-input-number>
+
       </nz-form-control>
     </nz-form-item>
 
@@ -66,7 +92,18 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="pozivni_broj">pozivni_broj</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="pozivni_broj" id="pozivni_broj" />
+       
+        <nz-input-number
+        [(ngModel)]="ValuePozivnoBr"
+        [nzMin]="0"
+        [nzMax]="10000"
+        [nzStep]="1"
+        [nzFormatter]="formatterPlus"
+        [nzParser]="parserPlus"
+        formControlName="pozivni_broj"
+        id="pozivni_broj"
+        ></nz-input-number>
+
       </nz-form-control>
     </nz-form-item>
 
@@ -85,12 +122,17 @@
     </nz-form-item>
     
 
+
+   
     
-    <button (click)="this.forma()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-    <button (click)="this.submitFormKreirajDrzavu()" nz-button class="login-form-button login-form-margin">Spremi</button>
+    <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
+    <button (click)="this.KreirajDrzavu()" nz-button class="login-form-button login-form-margin">Spremi</button>
     
-    <button (click)="this.submitFormNadiDrzavu()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-    <button (click)="this.submitFormAzurirajDrzavu()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+    <button (click)="this.NadiDrzavu()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
+    <button (click)="this.AzurirajDrzavu()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
     
     
 </form>
+</div>
+
+<div>.</div>

@@ -1,9 +1,9 @@
-export interface KreirajPoznatuZnamenitostInterface {
+export interface KreirajDvoracInterface {
     success: boolean;
-    data: PoznatuZnamenitostInterface;
+    data: DvoracInterface;
 }
 
-export interface PoznatuZnamenitostInterface {
+export interface DvoracInterface {
     id: number;
     
     naziv_drzave:      string;

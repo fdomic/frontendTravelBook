@@ -1,9 +1,9 @@
-export interface KreirajPoznatuZnamenitostInterface {
+export interface KreirajKlubInterface {
     success: boolean;
-    data: PoznatuZnamenitostInterface;
+    data: KluboviInterface;
 }
 
-export interface PoznatuZnamenitostInterface {
+export interface KluboviInterface {
     id: number;
     
     naziv_drzave:      string;

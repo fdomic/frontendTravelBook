@@ -1,11 +1,11 @@
-export interface KreirajPoznatuZnamenitostInterface {
+export interface KreirajKazalistaInterface {
     success: boolean;
-    data: PoznatuZnamenitostInterface;
+    data: KazalistaInterface;
 }
 
-export interface PoznatuZnamenitostInterface {
+export interface KazalistaInterface {
     id: number;
-    
+
     naziv_drzave:      string;
     glavni_grad:       string;
     sluzbeni_jezik:    string;

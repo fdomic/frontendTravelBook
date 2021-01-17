@@ -1,3 +1,5 @@
+<div class="container" >
+
 <form nz-form [formGroup]="this.validateForm" >
     
     <nz-form-item>
@@ -25,35 +27,77 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nadmorska_visina">nadmorska_visina</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="nadmorska_visina" id="nadmorska_visina" />
+        <nz-input-number
+        [(ngModel)]="ValueNadmorska_visina"
+        [nzMin]="0"
+        [nzMax]="10000"
+        [nzStep]="0.1"
+        [nzFormatter]="formatterM"
+        [nzParser]="parserM"
+        formControlName="nadmorska_visina"
+        id="nadmorska_visina"
+    ></nz-input-number>
+
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="povrsina">povrsina</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="povrsina" id="povrsina" />
+        <nz-input-number
+          [(ngModel)]="ValuePovrsina"
+          [nzMin]="0"
+          [nzMax]="10000"
+          [nzStep]="0.1"
+          [nzFormatter]="formatterKM"
+          [nzParser]="parserKM"
+          formControlName="povrsina"
+          id="povrsina"
+      ></nz-input-number>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="stanovnistvo">stanovnistvo</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="stanovnistvo" id="stanovnistvo" />
+        <nz-input-number
+          [(ngModel)]="ValueStanovnistvo"
+          [nzMin]="0"
+          [nzMax]="10000"
+          [nzStep]="1"
+          formControlName="stanovnistvo"
+          id="stanovnistvo"
+        ></nz-input-number>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postanski_broj">postanski_broj</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="postanski_broj" id="postanski_broj" />
+        <nz-input-number
+          [(ngModel)]="ValuePostanski_broj"
+          [nzMin]="0"
+          [nzMax]="10000"
+          [nzStep]="1"
+          formControlName="postanski_broj"
+          id="postanski_broj"
+        ></nz-input-number>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="pozivni_broj">pozivni_broj</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="pozivni_broj" id="pozivni_broj" />
+        <nz-input-number
+          [(ngModel)]="ValuePozivnoBr"
+          [nzMin]="0"
+          [nzMax]="10000"
+          [nzStep]="1"
+          [nzFormatter]="formatterPlus"
+          [nzParser]="parserPlus"
+          formControlName="pozivni_broj"
+          id="pozivni_broj"
+        ></nz-input-number>
       </nz-form-control>
     </nz-form-item>
 
@@ -65,18 +109,20 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="kordinate">kordinate</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sluzbena_stranica">sluzbena_stranica</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="kordinate" id="kordinate" />
+        <input nz-input formControlName="sluzbena_stranica" id="sluzbena_stranica" />
       </nz-form-control>
     </nz-form-item>
     
 
     
-    <button (click)="this.forma()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-    <button (click)="this.submitFormKreirajGrad()" nz-button class="login-form-button login-form-margin">Spremi</button>
+    <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
+    <button (click)="this.KreirajGrad()" nz-button class="login-form-button login-form-margin">Spremi</button>
     
-    <button (click)="this.submitFormNadiGrad()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-    <button (click)="this.submitFormAzurirajGrad()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+    <button (click)="this.NadiGrad()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
+    <button (click)="this.AzurirajGrad()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
     
 </form>
+
+</div>

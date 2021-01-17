@@ -16,6 +16,18 @@ export class DodajDrzavuComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
   public Drzave: Array<any> = [];
+  
+  public ValueStanovnistvo = 0;
+
+  public ValuePovrsina = 0;
+  public formatterKM = (value: number) => ` ${value} km^2`;
+  public parserKM = (value: string) => value.replace('km^2', '');
+
+  public ValuePozivnoBr = 0;
+  public formatterPlus = (value: number) => `+ ${value}`;
+  public parserPlus = (value: string) => value.replace('+', '');
+  
+
 
   constructor( 
     private apiService: ApiService,
@@ -33,6 +45,7 @@ export class DodajDrzavuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // ========= FORMA =========
  
   private initForm(): void {
     this.validateForm = this.fb.group({
@@ -51,25 +64,22 @@ export class DodajDrzavuComponent implements OnInit {
     });
   }
 
+  // ========= PRIPREMA PODATAKA =========
+
   private dohvatiPodatke(): void {
-    
-    
       this.apiService.dohvatiDrzavu().subscribe(
         response => this.Drzave = response.data,
-  
         error => console.log(error)
       )
-      
   }
 
-  
   public setId():any{ this.id = this.ruta.snapshot.params; }
 
   // ========= HTML METODE =========
 
 
   // Spremi novu drzavu
-  public submitFormKreirajDrzavu(): any {
+  public KreirajDrzavu(): any {
 
     for (const i in this.Drzave) {
       if(this.Drzave[i].naziv_drzave === this.validateForm.value.naziv_drzave ) return  this.message.create("error", `Ova drzava vec postoji`);
@@ -111,7 +121,7 @@ export class DodajDrzavuComponent implements OnInit {
   }
 
    // Azuriraj novu drzavu
-  public submitFormAzurirajDrzavu(): any {
+  public AzurirajDrzavu(): any {
   
     return this.apiService.azurirajDrzavu(
       this.validateForm.value.naziv_drzave,
@@ -141,7 +151,7 @@ export class DodajDrzavuComponent implements OnInit {
   }
 
   // Pronadi sve podatke za zeljenu drzavu
-  public submitFormNadiDrzavu(): any {
+  public NadiDrzavu(): any {
 
     for (const i in this.Drzave) {
       if(this.Drzave[i].id == this.id.id)  {
@@ -167,8 +177,6 @@ export class DodajDrzavuComponent implements OnInit {
     }
   }
 
-
-  
   public createMessage(type: string): void {
     if (type === "success") {
       this.message.create(type, `Uspjesno `);
@@ -178,13 +186,9 @@ export class DodajDrzavuComponent implements OnInit {
     }
   }
 
+  // ========= VRACANJE =========
 
-  
-  
-
-  //---------Vracanje-------
-
-  forma(){
+  public Nazad():any{
     
     this.router.navigate(['forme']);
   }

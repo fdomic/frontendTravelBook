@@ -1,5 +1,21 @@
 
 
+.container {
+	
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	top: 5%;
+	left: 5%;
+	margin-bottom: 12%;
+	
+	width: 90%;
+	max-width: 90%;
+	min-height: 550px;
+}
+
 //-----------------------------------------------------------------------------------
 
 // Opcenito 
@@ -51,11 +67,13 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-input   {
+nz-input-number, nz-date-picker, input{
+
 	background-color: #eee;
 	width: 200px;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
-}
+} 
+
 

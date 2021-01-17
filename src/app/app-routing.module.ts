@@ -5,7 +5,12 @@ import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './travelBook/navigation/navigation.component'
 import { DodajDrzavuComponent } from './travelBook/Forme/dodaj-drzavu/dodaj-drzavu.component';
 import { DodajGradComponent } from './travelBook/Forme/dodaj-grad/dodaj-grad.component';
-import { DodajPoznatuZnamenitostComponent } from './travelBook/Forme/dodaj-poznatu-znamenitost/dodaj-poznatu-znamenitost.component';
+import { DodajPoznateZnamenitostiComponent } from './travelBook/forme/dodaj-poznate-znamenitosti/dodaj-poznate-znamenitosti.component';
+import { DodajMuzejeComponent } from './travelbook/forme/dodaj-muzeje/dodaj-muzeje.component';
+import { DodajKluboveComponent } from './travelbook/forme/dodaj-klubove/dodaj-klubove.component';
+import { DodajKazalistaComponent } from './travelbook/forme/dodaj-kazalista/dodaj-kazalista.component';
+import { DodajDvorceComponent } from './travelbook/forme/dodaj-dvorce/dodaj-dvorce.component';
+
 
 
 const routes: Routes = [
@@ -13,15 +18,33 @@ const routes: Routes = [
   { path: "forme",          component: FormeComponent },
   { path: "navigation",     component: NavigationComponent },
 
+  //Drzava
   { path: "dodaj-drzavu",     component: DodajDrzavuComponent },
-  { path: "dodaj-drzavu/:id",     component: DodajDrzavuComponent },
+  { path: "dodaj-drzavu/:id", component: DodajDrzavuComponent },
 
+  //Grad
   { path: "dodaj-grad",     component: DodajGradComponent },
-  { path: "dodaj-grad/:id",     component: DodajGradComponent },
-
+  { path: "dodaj-grad/:id", component: DodajGradComponent },
   
-  { path: "dodaj-poznatu-znamenitost",     component: DodajPoznatuZnamenitostComponent },
-  { path: "dodaj-poznatu-znamenitost/:id",     component: DodajPoznatuZnamenitostComponent },
+  //Poznata znamenitost
+  { path: "dodaj-poznatu-znamenitost",     component: DodajPoznateZnamenitostiComponent },
+  { path: "dodaj-poznatu-znamenitost/:id", component: DodajPoznateZnamenitostiComponent },
+
+  //Muzej
+  { path: "muzej",         component: DodajMuzejeComponent },
+  { path: "muzej/:id",     component: DodajMuzejeComponent },
+
+   //Dvorci
+   { path: "dvorci",         component: DodajDvorceComponent },
+   { path: "dvorci/:id",     component: DodajDvorceComponent },
+
+   //Klubovi
+   { path: "klubovi",         component: DodajKluboveComponent },
+   { path: "klubovi/:id",     component: DodajKluboveComponent },
+
+   //Klubovi
+   { path: "kazalista",         component: DodajKazalistaComponent },
+   { path: "kazalista/:id",     component: DodajKazalistaComponent },
 
   { path: '',       pathMatch: 'full',  redirectTo: 'login' },
   { path: "**",     pathMatch: "full",  redirectTo: "login" }

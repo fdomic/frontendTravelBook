@@ -18,6 +18,25 @@ export class DodajGradComponent implements OnInit {
   public Gradovi: Array<any> = [];
   public Drzave: Array<any> = [];
 
+  
+  public ValueStanovnistvo = 0;
+
+  public ValuePostanski_broj= 0;
+  
+  public ValueNadmorska_visina= 0;
+  public formatterM = (value: number) => ` ${value} m `;
+  public parserM = (value: string) => value.replace('m', '');
+
+
+  public ValuePovrsina = 0;
+  public formatterKM = (value: number) => ` ${value} km^2`;
+  public parserKM = (value: string) => value.replace('km^2', '');
+
+  public ValuePozivnoBr = 0;
+  public formatterPlus = (value: number) => `+ ${value}`;
+  public parserPlus = (value: string) => value.replace('+', '');
+
+
   constructor( 
     private apiService: ApiService, 
     private fb: FormBuilder,
@@ -30,25 +49,30 @@ export class DodajGradComponent implements OnInit {
       this.setId();
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
+  public onChange(result: Date): void { this.validateForm.value.neovisnost = result;}
+
+
+  // ========= FORMA =========
 
   private initForm(): void {
     this.validateForm = this.fb.group({
-      id_drzave:        ['1', [Validators.required]],
-      naziv_grada:      ['1', [Validators.required]],
-      gradonacelnik:    ['1', [Validators.required]],
-      povrsina:         ['1', [Validators.required]],
-      nadmorska_visina: ['1', [Validators.required]],
-      stanovnistvo:     ['1', [Validators.required]],
-      postanski_broj:   ['1', [Validators.required]],
-      pozivni_broj:     ['1', [Validators.required]],
-      slika:            ['1', [Validators.required]],
-      kordinate:        ['1', [Validators.required]],
+      id_drzave:        ['', [Validators.required]],
+      naziv_grada:      ['', [Validators.required]],
+      gradonacelnik:    ['', [Validators.required]],
+      povrsina:         ['', [Validators.required]],
+      nadmorska_visina: ['', [Validators.required]],
+      stanovnistvo:     ['', [Validators.required]],
+      postanski_broj:   ['', [Validators.required]],
+      pozivni_broj:     ['', [Validators.required]],
+      slika:            ['', [Validators.required]],
+      sluzbena_stranica:['', [Validators.required]],
     });
 
   }
+
+
+  // ========= PRIPREMA PODATAKA =========
 
   private dohvatiPodatke(): void {
     
@@ -69,7 +93,7 @@ export class DodajGradComponent implements OnInit {
   // ========= HTML METODE =========
 
   // Spremi novu drzavu
-  public submitFormKreirajGrad(): any {
+  public KreirajGrad(): any {
 
     for (const i in this.Gradovi) {
       if(this.Gradovi[i].naziv_grada === this.validateForm.value.naziv_grada ) return this.message.create("error", `Ovaj grad vec postoji`);
@@ -93,7 +117,7 @@ export class DodajGradComponent implements OnInit {
       this.validateForm.value.postanski_broj,
       this.validateForm.value.pozivni_broj,
       this.validateForm.value.slika,
-      this.validateForm.value.kordinate,
+      this.validateForm.value.sluzbena_stranica,
       ).subscribe(response => {
         if(response ) {
           console.log(this.validateForm.value);
@@ -109,7 +133,7 @@ export class DodajGradComponent implements OnInit {
   }
 
    // Azuriraj novu grad
-  public submitFormAzurirajGrad(): any {
+  public AzurirajGrad(): any {
 
     return this.apiService.azurirajGrad(
       this.validateForm.value.id_drzave,
@@ -121,7 +145,7 @@ export class DodajGradComponent implements OnInit {
       this.validateForm.value.postanski_broj,
       this.validateForm.value.pozivni_broj,
       this.validateForm.value.slika,
-      this.validateForm.value.kordinate,
+      this.validateForm.value.sluzbena_stranica,
       this.id
       ).subscribe(response => {
         if(response ) {
@@ -136,29 +160,8 @@ export class DodajGradComponent implements OnInit {
     );
   }
 
-  // Obrisi drzavu
-  public submitFormObrisiDrzavu():any{
-
-    for (const i in this.Gradovi) {
-      if(this.Gradovi[i].naziv_grada === this.validateForm.value.naziv_grada )  {
-        return this.apiService.obrisiGrad(this.Gradovi[i].id).subscribe(response => {
-            if(response ) {
-              console.log(this.validateForm.value);
-              this.createMessage("success" );
-              this.dohvatiPodatke();
-              this.initForm();
-              this.router.navigate(['forme']);
-            }
-          },
-          error => console.log(error,this.createMessage("error"))
-        );
-      }
-    }
-  }
-
-
   // Pronadi sve podatke za zeljenu drzavu
-  public submitFormNadiGrad(): any {
+  public NadiGrad(): any {
 
     for (const i in this.Gradovi) {
       if(this.Gradovi[i].id == this.id.id )  {
@@ -172,7 +175,7 @@ export class DodajGradComponent implements OnInit {
         postanski_broj:   [this.Gradovi[i].postanski_broj],
         pozivni_broj:     [this.Gradovi[i].pozivni_broj],
         slika:            [this.Gradovi[i].slika],
-        kordinate:        [this.Gradovi[i].kordinate]
+        sluzbena_stranica:        [this.Gradovi[i].sluzbena_stranica]
         });
         this.id = this.Gradovi[i].id;
 
@@ -192,9 +195,9 @@ export class DodajGradComponent implements OnInit {
   }
   
 
-  //---------Vracanje-------
+   // ========= VRACANJE =========
 
-  forma(){
+  public Nazad():any{
     
     this.router.navigate(['forme']);
   }
