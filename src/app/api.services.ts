@@ -478,7 +478,7 @@ export class ApiService {
     // Kreiraj novu dvorac cijena
     public kreirajDvorciCijena(
 
-      id_muzeji:      number,
+      id_dvorci:      number,
       karta:          string,
       opis:           string,
       trajanje_karte: number,
@@ -487,7 +487,7 @@ export class ApiService {
 
     ): Observable<KreirajMuzejiCijenaInterface> {
       let payload = {
-        id_muzeji:     id_muzeji,
+        id_dvorci:     id_dvorci,
         karta:         karta,
         opis:          opis,
         trajanje_karte:trajanje_karte,
@@ -502,7 +502,7 @@ export class ApiService {
     // Azuriraj podatak za dvorac cijena
     public azurirajDvorciCijena ( 
       
-      id_muzeji:      number,
+      id_dvorci:      number,
       karta:          string,
       opis:           string,
       trajanje_karte: number,
@@ -514,7 +514,7 @@ export class ApiService {
           
         };
         if (id)             payload["id"] = id;
-        if (id_muzeji)      payload["id_poznate_znamenitosti"] = id_muzeji;
+        if (id_dvorci)      payload["id_poznate_znamenitosti"] = id_dvorci;
         if (karta)          payload["karta"] = karta; 
         if (opis)           payload["opis"] =  opis;
         if (trajanje_karte) payload["trajanje_karte"] = trajanje_karte;
@@ -918,7 +918,7 @@ export class ApiService {
     // Kreiraj novu Muzej cijena
     public kreirajKazalisteCijena(
 
-      id_muzeji:      number,
+      id_kazalista:   number,
       karta:          string,
       opis:           string,
       trajanje_karte: number,
@@ -927,7 +927,7 @@ export class ApiService {
 
     ): Observable<KreirajMuzejiCijenaInterface> {
       let payload = {
-        id_muzeji:     id_muzeji,
+        id_kazalista:  id_kazalista,
         karta:         karta,
         opis:          opis,
         trajanje_karte:trajanje_karte,

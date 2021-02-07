@@ -48,7 +48,7 @@ export class DodajKluboveComponent implements OnInit {
 
   private dohvatiPodatke(): void {
     
-      this.apiService.dohvatiKlubove().subscribe(
+      this.apiService.dohvatiKluboviCijena().subscribe(
         response => this.KluboviLista = response.data,
         error => console.log(error)
       )
