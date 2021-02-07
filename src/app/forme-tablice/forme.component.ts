@@ -199,17 +199,17 @@ export class FormeComponent implements OnInit {
     if(ruta == 3){ this.router.navigate(['dodaj-poznatu-znamenitost/'+podatak]);        }
     if(ruta == 3){ this.router.navigate(['dodaj-poznate-znamenitosti-cijene/'+podatak]);}
     //-
-    if(ruta == 4){ this.router.navigate(['dodaj-muzej/'+podatak]);                       }
-    if(ruta == 41){ this.router.navigate(['dodaj-muzeji-cijene/'+podatak]);              }
-    if(ruta == 41){ this.router.navigate(['dodaj-poznata-dijela/'+podatak])              }
+    if(ruta == 4){  this.router.navigate(['dodaj-muzej/'+podatak]);                      }
+    if(ruta == 41){ this.router.navigate(['dodaj-muzej-cijena/'+podatak]);               }
+    if(ruta == 42){ this.router.navigate(['dodaj-poznata-dijela/'+podatak])              }
     //-
-    if(ruta == 5){ this.router.navigate(['dodaj-klubovi/'+podatak]);                     }
+    if(ruta == 5){  this.router.navigate(['dodaj-klubovi/'+podatak]);                    }
     if(ruta == 51){ this.router.navigate(['dodaj-klubovi-cijene/'+podatak]);             }
     //-
-    if(ruta == 6){ this.router.navigate(['dodaj-kazalista/'+podatak]);                   }
+    if(ruta == 6){  this.router.navigate(['dodaj-kazalista/'+podatak]);                  }
     if(ruta == 61){ this.router.navigate(['dodaj-kazalista-cijene/'+podatak]);           }
     //-
-    if(ruta == 7){ this.router.navigate(['dodaj-dvorci/'+podatak]);                      }
+    if(ruta == 7){  this.router.navigate(['dodaj-dvorci/'+podatak]);                     }
     if(ruta == 71){ this.router.navigate(['dodaj-dvorci-cijene/'+podatak]);              }
   }
 
@@ -282,7 +282,7 @@ public poznataZnamenitostPreusmjeri():void {this.router.navigate(['dodaj-poznatu
 public poznataZnamenitostCijenaPreusmjeri():void {this.router.navigate(['dodaj-poznate-znamenitosti-cijene']);}
 
 public muzejiPreusmjeri():void{ this.router.navigate(['dodaj-muzej']);}
-public muzejiCijenaPreusmjeri():void{ this.router.navigate(['dodaj-muzeji-cijene']);}
+public muzejiCijenaPreusmjeri():void{ this.router.navigate(['dodaj-muzej-cijena']);}
 public muzejiPoznataDijelaPreusmjeri():void{ this.router.navigate(['dodaj-poznata-dijela']);}
 
 public dvoracPreusmjeri():void{ this.router.navigate(['dodaj-dvorci']);}

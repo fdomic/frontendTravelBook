@@ -203,7 +203,7 @@
           <th>opis                    </th>
           <th>trajanje_karte          </th>
           <th>cijena                  </th>
-          <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+          <th><button nz-button nzType="primary" (click)="this.muzejiCijenaPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
         </tr>
       </thead>
       <tbody >
@@ -215,7 +215,7 @@
           <td>{{ muzejCijena.cijena }}         </td>
           <td>
             <button nz-button nzType="primary" (click)="this.submitPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
-            <button nz-button nzType="primary" (click)="this.brisiPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary" (click)="this.brisiPodatak(muzejCijena.id,42)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
           </td>
     
         </tr>

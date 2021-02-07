@@ -31,6 +31,7 @@ import { DodajMuzejeComponent } from './travelbook/forme/dodaj-muzeje/dodaj-muze
 import { DodajKluboveComponent } from './travelbook/forme/dodaj-klubove/dodaj-klubove.component';
 import { DodajKazalistaComponent } from './travelbook/forme/dodaj-kazalista/dodaj-kazalista.component';
 import { DodajDvorceComponent } from './travelbook/forme/dodaj-dvorce/dodaj-dvorce.component';
+import { DodajMuzejCijenaComponent } from './travelbook/forme/dodaj-muzej-cijena/dodaj-muzej-cijena.component';
 
 
 registerLocaleData(en);
@@ -47,7 +48,8 @@ registerLocaleData(en);
     DodajMuzejeComponent,
     DodajKluboveComponent,
     DodajKazalistaComponent,
-    DodajDvorceComponent
+    DodajDvorceComponent,
+    DodajMuzejCijenaComponent
   ],
   imports: [
    

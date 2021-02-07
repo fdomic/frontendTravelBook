@@ -10,6 +10,8 @@ import { DodajMuzejeComponent } from './travelbook/forme/dodaj-muzeje/dodaj-muze
 import { DodajKluboveComponent } from './travelbook/forme/dodaj-klubove/dodaj-klubove.component';
 import { DodajKazalistaComponent } from './travelbook/forme/dodaj-kazalista/dodaj-kazalista.component';
 import { DodajDvorceComponent } from './travelbook/forme/dodaj-dvorce/dodaj-dvorce.component';
+import { DodajMuzejCijenaComponent } from './travelbook/forme/dodaj-muzej-cijena/dodaj-muzej-cijena.component';
+
 
 
 
@@ -33,6 +35,10 @@ const routes: Routes = [
   //Muzej
   { path: "dodaj-muzej",         component: DodajMuzejeComponent },
   { path: "dodaj-muzej/:id",     component: DodajMuzejeComponent },
+ 
+  { path: "dodaj-muzej-cijena",     component: DodajMuzejCijenaComponent },
+  { path: "dodaj-muzej-cijena/:id",     component: DodajMuzejCijenaComponent },
+
 
    //Dvorci
    { path: "dodaj-dvorci",         component: DodajDvorceComponent },

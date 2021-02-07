@@ -464,9 +464,9 @@ export class ApiService {
     public obrisiDvorac(id:number): Observable<KreirajDvoracInterface> {
       return <any> this.http.delete(this.url + "/dvorci/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
     }
-  //------------------Muzej cijena-----------------------------------------------------------------------
+  //------------------Dvorci cijena-----------------------------------------------------------------------
 
-    // Dohvati sve podatke za Muzej cijena
+    // Dohvati sve podatke za dvorcicijena
     public dohvatiDvorciCijena(id?: number):Observable<any>{ 
 
       if (id) return <any> this.http.get(this.url + "/dvorci-cijene/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
@@ -475,7 +475,7 @@ export class ApiService {
       
     }
 
-    // Kreiraj novu Muzej cijena
+    // Kreiraj novu dvorac cijena
     public kreirajDvorciCijena(
 
       id_muzeji:      number,
@@ -499,7 +499,7 @@ export class ApiService {
     
     }
 
-    // Azuriraj podatak za Muzej cijena
+    // Azuriraj podatak za dvorac cijena
     public azurirajDvorciCijena ( 
       
       id_muzeji:      number,
@@ -523,7 +523,7 @@ export class ApiService {
         return <any> this.http.post(this.url + "/dvorci-cijene", payload, this.getHttpOptions()).pipe(tap( () => {} ));
     }
 
-    //Obrisi Muzej cijena
+    //Obrisi dvorac cijena
     public obrisiDvorciCijena(id:number): Observable<KreirajMuzejiCijenaInterface> {
       return <any> this.http.delete(this.url + "/dvorci-cijene/"+id, this.getHttpOptions()).pipe(tap( () => {} ));
     }
