@@ -1,11 +1,11 @@
 
 <div class="container" >
   <form nz-form [formGroup]="this.validateForm" >
-
+    
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_muzeji">id_muzeji</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_poznate_znamenitosti">id_poznate_znamenitosti</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="id_muzeji" id="id_muzeji" />
+        <input nz-input formControlName="id_poznate_znamenitosti" id="id_poznate_znamenitosti" />
       </nz-form-control>
     </nz-form-item>  
       
@@ -56,10 +56,10 @@
     </nz-form-item>    
 
   </form>
-
-  <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-  <button (click)="this.KreirajMuzejCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
-  <button (click)="this.NadiMuzejCijena()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-  <button (click)="this.AzurirajMuzejCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
   
+  <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
+  <button (click)="this.KreirajPotnateZnamenitostiCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
+  <button (click)="this.NadiPotnateZnamenitostiCijena()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
+  <button (click)="this.AzurirajPotnateZnamenitostiCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+
 </div>

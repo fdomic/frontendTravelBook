@@ -32,6 +32,10 @@ import { DodajKluboveComponent } from './travelbook/forme/dodaj-klubove/dodaj-kl
 import { DodajKazalistaComponent } from './travelbook/forme/dodaj-kazalista/dodaj-kazalista.component';
 import { DodajDvorceComponent } from './travelbook/forme/dodaj-dvorce/dodaj-dvorce.component';
 import { DodajMuzejCijenaComponent } from './travelbook/forme/dodaj-muzej-cijena/dodaj-muzej-cijena.component';
+import { DodajKlubCijenaComponent } from './travelBook/forme/dodaj-klub-cijena/dodaj-klub-cijena.component';
+import { DodajKazalisteCijenaComponent } from './travelBook/forme/dodaj-kazaliste-cijena/dodaj-kazaliste-cijena.component';
+import { DodajDvorciCijenaComponent } from './travelBook/forme/dodaj-dvorci-cijena/dodaj-dvorci-cijena.component';
+import { DodajPoznateZnamenitostiCijenaComponent } from './travelBook/forme/dodaj-poznate-znamenitosti-cijena/dodaj-poznate-znamenitosti-cijena.component';
 
 
 registerLocaleData(en);
@@ -49,7 +53,11 @@ registerLocaleData(en);
     DodajKluboveComponent,
     DodajKazalistaComponent,
     DodajDvorceComponent,
-    DodajMuzejCijenaComponent
+    DodajMuzejCijenaComponent,
+    DodajKlubCijenaComponent,
+    DodajKazalisteCijenaComponent,
+    DodajDvorciCijenaComponent,
+    DodajPoznateZnamenitostiCijenaComponent
   ],
   imports: [
    

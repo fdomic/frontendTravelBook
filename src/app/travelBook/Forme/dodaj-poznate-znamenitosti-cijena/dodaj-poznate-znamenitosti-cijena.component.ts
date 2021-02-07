@@ -5,16 +5,17 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from 'src/app/api.services';
 
 @Component({
-  selector: 'app-dodaj-muzej-cijena',
-  templateUrl: './dodaj-muzej-cijena.component.html',
-  styleUrls: ['./dodaj-muzej-cijena.component.scss']
+  selector: 'app-dodaj-poznate-znamenitosti-cijena',
+  templateUrl: './dodaj-poznate-znamenitosti-cijena.component.html',
+  styleUrls: ['./dodaj-poznate-znamenitosti-cijena.component.scss']
 })
-export class DodajMuzejCijenaComponent implements OnInit {
+export class DodajPoznateZnamenitostiCijenaComponent implements OnInit {
 
-
+  
   public id ;
   public validateForm: FormGroup;
-  public MuzejiCijenaLista: Array<any> = [];
+  public PotnateZnamenitostiCijenaLista: Array<any> = [];
+
 
   public ValueVrijemTrajanja = 1;
   public formatterMIN = (value: number) => ` ${value} min`;
@@ -23,7 +24,7 @@ export class DodajMuzejCijenaComponent implements OnInit {
   public ValueCijena = 1;
   public formatterCijena = (value: number) => ` ${value} € `;
   public parserCijena = (value: string) => value.replace('1 €', '');
-
+  
   constructor( 
     private apiService: ApiService, 
     private fb: FormBuilder,
@@ -34,14 +35,13 @@ export class DodajMuzejCijenaComponent implements OnInit {
       this.initForm();
       this.dohvatiPodatke();
       this.setId();
-      this.NadiMuzejCijena();
 
   }
 
   private initForm(): void {
     
     this.validateForm = this.fb.group({
-      id_muzeji:      ['', [Validators.required]],
+      id_poznate_znamenitosti: ['', [Validators.required]],
       karta:          ['', [Validators.required]],
       opis:           ['', [Validators.required]],
       trajanje_karte: ['', [Validators.required]],
@@ -52,8 +52,8 @@ export class DodajMuzejCijenaComponent implements OnInit {
 
   private dohvatiPodatke(): void {
     
-      this.apiService.dohvatiMuzejiCijena().subscribe(
-        response => this.MuzejiCijenaLista = response.data,
+      this.apiService.dohvatiPoznatuZnamenitostCijena().subscribe(
+        response => this.PotnateZnamenitostiCijenaLista = response.data,
         error => console.log(error)
       )
 
@@ -67,7 +67,7 @@ export class DodajMuzejCijenaComponent implements OnInit {
   // ========= HTML METODE =========
 
 
-  public KreirajMuzejCijena(): any {
+  public KreirajPotnateZnamenitostiCijena(): any {
 
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -76,8 +76,8 @@ export class DodajMuzejCijenaComponent implements OnInit {
 
     if (this.validateForm.valid === false) return console.log("Netocni podatci")
     
-    return this.apiService.kreirajMuzejCijena(
-      this.validateForm.value.id_muzeji,
+    return this.apiService.kreirajPoznatuZnamenitostCijena(
+      this.validateForm.value.id_poznate_znamenitosti,
       this.validateForm.value.karta,
       this.validateForm.value.opis,
       this.validateForm.value.trajanje_karte,
@@ -96,10 +96,10 @@ export class DodajMuzejCijenaComponent implements OnInit {
 
   }
 
-  public AzurirajMuzejCijena(): any {
+  public AzurirajPotnateZnamenitostiCijena(): any {
 
-    return this.apiService.azurirajMuzejCijena(
-      this.validateForm.value.id_muzeji,
+    return this.apiService.azurirajPoznatuZnamenitostCijena(
+      this.validateForm.value.id_poznate_znamenitosti,
       this.validateForm.value.karta,
       this.validateForm.value.opis,
       this.validateForm.value.trajanje_karte,
@@ -119,18 +119,18 @@ export class DodajMuzejCijenaComponent implements OnInit {
 
   }
 
-  public NadiMuzejCijena(): void {
+  public NadiPotnateZnamenitostiCijena(): void {
 
-    for (const i in this.MuzejiCijenaLista) {
-      if(this.MuzejiCijenaLista[i].id == this.id.id )  {
+    for (const i in this.PotnateZnamenitostiCijenaLista) {
+      if(this.PotnateZnamenitostiCijenaLista[i].id == this.id.id )  {
         this.validateForm = this.fb.group({
-        id_muzeji:        [this.MuzejiCijenaLista[i].id_muzeji],
-        karta:    [this.MuzejiCijenaLista[i].karta],
-        opis:         [this.MuzejiCijenaLista[i].opis],
-        trajanje_karte: [this.MuzejiCijenaLista[i].trajanje_karte],
-        cijena:       [this.MuzejiCijenaLista[i].cijena],
+        id_poznate_znamenitosti: [this.PotnateZnamenitostiCijenaLista[i].id_poznate_znamenitosti],
+        karta:                   [this.PotnateZnamenitostiCijenaLista[i].karta],
+        opis:                    [this.PotnateZnamenitostiCijenaLista[i].opis],
+        trajanje_karte:          [this.PotnateZnamenitostiCijenaLista[i].trajanje_karte],
+        cijena:                  [this.PotnateZnamenitostiCijenaLista[i].cijena],
         });
-        this.id = this.MuzejiCijenaLista[i].id;
+        this.id = this.PotnateZnamenitostiCijenaLista[i].id;
 
         break;
       }
@@ -154,7 +154,5 @@ export class DodajMuzejCijenaComponent implements OnInit {
   public Nazad():any{this.router.navigate(['forme']);}
 
 
-
-  
 
 }

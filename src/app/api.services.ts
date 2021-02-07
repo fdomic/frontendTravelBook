@@ -760,7 +760,7 @@ export class ApiService {
 
    //------------------Klubovi cijena-----------------------------------------------------------------------
 
-    // Dohvati sve podatke za Muzej cijena
+    // Dohvati sve podatke za klub cijena
     public dohvatiKluboviCijena(id?: number):Observable<any>{ 
 
       if (id) return <any> this.http.get(this.url + "/klubovi-cijene/" + id, this.getHttpOptions()).pipe(tap( () => {} ));
@@ -769,10 +769,10 @@ export class ApiService {
       
     }
 
-    // Kreiraj novu Muzej cijena
+    // Kreiraj novu klub cijena
     public kreirajKlubCijena(
 
-      id_muzeji:      number,
+      id_klubovi:      number,
       karta:          string,
       opis:           string,
       trajanje_karte: number,
@@ -781,7 +781,7 @@ export class ApiService {
 
     ): Observable<KreirajMuzejiCijenaInterface> {
       let payload = {
-        id_muzeji:     id_muzeji,
+        id_klubovi:     id_klubovi,
         karta:         karta,
         opis:          opis,
         trajanje_karte:trajanje_karte,
@@ -796,7 +796,7 @@ export class ApiService {
     // Azuriraj podatak za Muzej cijena
     public azurirajKlubCijena ( 
       
-      id_muzeji:      number,
+      id_klubovi:      number,
       karta:          string,
       opis:           string,
       trajanje_karte: number,
@@ -808,7 +808,7 @@ export class ApiService {
           
         };
         if (id)             payload["id"] = id;
-        if (id_muzeji)      payload["id_poznate_znamenitosti"] = id_muzeji;
+        if (id_klubovi)     payload["id_poznate_znamenitosti"] = id_klubovi;
         if (karta)          payload["karta"] = karta; 
         if (opis)           payload["opis"] =  opis;
         if (trajanje_karte) payload["trajanje_karte"] = trajanje_karte;

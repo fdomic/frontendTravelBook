@@ -131,7 +131,7 @@
         <th>opis                    </th>
         <th>trajanje_karte          </th>
         <th>cijena                  </th>
-        <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+        <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostCijenaPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
       </tr>
     </thead>
     <tbody >
@@ -215,7 +215,7 @@
           <td>{{ muzejCijena.cijena }}         </td>
           <td>
             <button nz-button nzType="primary" (click)="this.submitPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
-            <button nz-button nzType="primary" (click)="this.brisiPodatak(muzejCijena.id,42)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary" (click)="this.brisiPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
           </td>
     
         </tr>
@@ -255,8 +255,8 @@
             <td>{{ klub.sluzbena_stranica }}</td>
       
             <td>
-              <button nz-button nzType="primary" (click)="this.submitPodatak(klub.id,6)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
-              <button nz-button nzType="primary" (click)="this.brisiPodatak(klub.id,6)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+              <button nz-button nzType="primary" (click)="this.submitPodatak(klub.id,5)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+              <button nz-button nzType="primary" (click)="this.brisiPodatak(klub.id,5)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
             </td>
       
           </tr>
@@ -275,7 +275,7 @@
           <th>opis                    </th>
           <th>trajanje_karte          </th>
           <th>cijena                  </th>
-          <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+          <th><button nz-button nzType="primary" (click)="this.kluboviCijenaPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
         </tr>
       </thead>
       <tbody >
@@ -329,8 +329,8 @@
               <td>{{ kazaliste.sluzbena_stranica }}</td>
         
               <td>
-                <button nz-button nzType="primary" (click)="this.submitPodatak(kazaliste.id,7)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
-                <button nz-button nzType="primary" (click)="this.brisiPodatak(kazaliste.id,7)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+                <button nz-button nzType="primary" (click)="this.submitPodatak(kazaliste.id,6)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                <button nz-button nzType="primary" (click)="this.brisiPodatak(kazaliste.id,6)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
               </td>
         
             </tr>
@@ -348,7 +348,7 @@
               <th>opis                    </th>
               <th>trajanje_karte          </th>
               <th>cijena                  </th>
-              <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+              <th><button nz-button nzType="primary" (click)="this.kazalistaCijenaPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
             </tr>
           </thead>
           <tbody >
@@ -398,8 +398,8 @@
                 <td>{{ dvorac.adresa }}           </td>
                 <td>{{ dvorac.sluzbena_stranica }}</td>
                 <td>
-                  <button nz-button nzType="primary" (click)="this.submitPodatak(dvorac.id,5)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
-                  <button nz-button nzType="primary" (click)="this.brisiPodatak(dvorac.id,5)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+                  <button nz-button nzType="primary" (click)="this.submitPodatak(dvorac.id,7)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                  <button nz-button nzType="primary" (click)="this.brisiPodatak(dvorac.id,7)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -416,7 +416,7 @@
                 <th>opis                    </th>
                 <th>trajanje_karte          </th>
                 <th>cijena                  </th>
-                <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+                <th><button nz-button nzType="primary" (click)="this.dvoracCijenaPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
               </tr>
             </thead>
             <tbody >

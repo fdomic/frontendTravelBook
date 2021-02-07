@@ -197,17 +197,17 @@ export class FormeComponent implements OnInit {
     if(ruta == 2){ this.router.navigate(['dodaj-grad/'+podatak]);                       }
     //-
     if(ruta == 3){ this.router.navigate(['dodaj-poznatu-znamenitost/'+podatak]);        }
-    if(ruta == 3){ this.router.navigate(['dodaj-poznate-znamenitosti-cijene/'+podatak]);}
+    if(ruta == 31){ this.router.navigate(['dodaj-poznatu-znamenitost-cijena/'+podatak]);}
     //-
     if(ruta == 4){  this.router.navigate(['dodaj-muzej/'+podatak]);                      }
     if(ruta == 41){ this.router.navigate(['dodaj-muzej-cijena/'+podatak]);               }
     if(ruta == 42){ this.router.navigate(['dodaj-poznata-dijela/'+podatak])              }
     //-
     if(ruta == 5){  this.router.navigate(['dodaj-klubovi/'+podatak]);                    }
-    if(ruta == 51){ this.router.navigate(['dodaj-klubovi-cijene/'+podatak]);             }
+    if(ruta == 51){ this.router.navigate(['dodaj-klubovi-cijena/'+podatak]);             }
     //-
     if(ruta == 6){  this.router.navigate(['dodaj-kazalista/'+podatak]);                  }
-    if(ruta == 61){ this.router.navigate(['dodaj-kazalista-cijene/'+podatak]);           }
+    if(ruta == 61){ this.router.navigate(['dodaj-kazalista-cijena/'+podatak]);           }
     //-
     if(ruta == 7){  this.router.navigate(['dodaj-dvorci/'+podatak]);                     }
     if(ruta == 71){ this.router.navigate(['dodaj-dvorci-cijene/'+podatak]);              }
@@ -233,30 +233,59 @@ export class FormeComponent implements OnInit {
        },error => console.log(error,this.createMessage("error")));
     }
 
+    if(brisi == 31){//POZNATA ZNAMENITOST CIJENA
+      return this.apiService.obrisiPoznatuZnamenitostCijena(podatakId).subscribe(response => { if(response ){ 
+        this.createMessage("success" ); }
+       },error => console.log(error,this.createMessage("error")));
+    }
+
     if(brisi == 4){//MUZEJ
       return this.apiService.obrisiMuzej(podatakId).subscribe(response => { if(response ){ 
         this.createMessage("success" ); }
        },error => console.log(error,this.createMessage("error")));
     }
 
-    if(brisi == 5){//DVORCI
-      return this.apiService.obrisiDvorac(podatakId).subscribe(response => { if(response ){ 
+    if(brisi == 41){//MUZEJ CIJENA
+      return this.apiService.obrisiMuzejCijena(podatakId).subscribe(response => { if(response ){ 
         this.createMessage("success" ); }
        },error => console.log(error,this.createMessage("error")));
     }
 
-    if(brisi == 6){//KLUBOVI
+    if(brisi == 5){//KLUBOVI
       return this.apiService.obrisiKlub(podatakId).subscribe(response => { if(response ){ 
         this.createMessage("success" ); }
        },error => console.log(error,this.createMessage("error")));
     }
 
-    if(brisi == 7){//KAZALISTA
+    if(brisi == 51){//KLUBOVI CIJENA
+      return this.apiService.obrisiKlubCijena(podatakId).subscribe(response => { if(response ){ 
+        this.createMessage("success" ); }
+       },error => console.log(error,this.createMessage("error")));
+    }
+
+    if(brisi == 6){//KAZALISTA
       return this.apiService.obrisiKazaliste(podatakId).subscribe(response => { if(response ){ 
         this.createMessage("success" ); }
        },error => console.log(error,this.createMessage("error")));
     }
 
+    if(brisi == 61){//KAZALISTA CIJENA
+      return this.apiService.obrisiKazalisteCijena(podatakId).subscribe(response => { if(response ){ 
+        this.createMessage("success" ); }
+       },error => console.log(error,this.createMessage("error")));
+    }
+
+    if(brisi == 71){//DVORCI CIJENA
+      return this.apiService.obrisiDvorciCijena(podatakId).subscribe(response => { if(response ){ 
+        this.createMessage("success" ); }
+       },error => console.log(error,this.createMessage("error"))); 
+    }
+    
+    if(brisi == 7){//DVORCI
+      return this.apiService.obrisiDvorac(podatakId).subscribe(response => { if(response ){ 
+        this.createMessage("success" ); }
+       },error => console.log(error,this.createMessage("error"))); 
+    }  
   }
 
   public createMessage(type: string): void {
@@ -272,27 +301,33 @@ export class FormeComponent implements OnInit {
 
 //-----------------
 
+//Nazad u navigaciju
 public nazad():void{ this.router.navigate(['navigation']); }
 
-public drzavePreusmjeri():void{ this.router.navigate(['dodaj-drzavu']);}
+//Grad i Drzava
+public drzavePreusmjeri():void { this.router.navigate(['dodaj-drzavu']);}
+public gradPreusmjeri():void   { this.router.navigate(['dodaj-grad']);  }
 
-public gradPreusmjeri():void{ this.router.navigate(['dodaj-grad']);}
+//PoznateZnamenitosti
+public poznataZnamenitostPreusmjeri():void       { this.router.navigate(['dodaj-poznatu-znamenitost']);         }
+public poznataZnamenitostCijenaPreusmjeri():void { this.router.navigate(['dodaj-poznatu-znamenitost-cijena']); }
 
-public poznataZnamenitostPreusmjeri():void {this.router.navigate(['dodaj-poznatu-znamenitost']);}
-public poznataZnamenitostCijenaPreusmjeri():void {this.router.navigate(['dodaj-poznate-znamenitosti-cijene']);}
+//Muzeji
+public muzejiPreusmjeri():void              { this.router.navigate(['dodaj-muzej']);          }
+public muzejiCijenaPreusmjeri():void        { this.router.navigate(['dodaj-muzej-cijena']);   }
+public muzejiPoznataDijelaPreusmjeri():void { this.router.navigate(['dodaj-poznata-dijela']); }
 
-public muzejiPreusmjeri():void{ this.router.navigate(['dodaj-muzej']);}
-public muzejiCijenaPreusmjeri():void{ this.router.navigate(['dodaj-muzej-cijena']);}
-public muzejiPoznataDijelaPreusmjeri():void{ this.router.navigate(['dodaj-poznata-dijela']);}
+//Dvorci
+public dvoracPreusmjeri():void          { this.router.navigate(['dodaj-dvorci']);           }
+public dvoracCijenaPreusmjeri():void    { this.router.navigate(['dodaj-dvorci-cijena']);    }
 
-public dvoracPreusmjeri():void{ this.router.navigate(['dodaj-dvorci']);}
-public dvoracCijenaPreusmjeri():void{ this.router.navigate(['dodaj-dvorci-cijene']);}
+//Klubovi
+public kluboviPreusmjeri():void         { this.router.navigate(['dodaj-klubovi']);          }
+public kluboviCijenaPreusmjeri():void   { this.router.navigate(['dodaj-klubovi-cijena']);   }
 
-public kluboviPreusmjeri():void{ this.router.navigate(['dodaj-klubovi']);}
-public kluboviCijenaPreusmjeri():void{ this.router.navigate(['dodaj-klubovi-cijene']);}
-
-public kazalistaPreusmjeri():void{ this.router.navigate(['dodaj-kazalista']);}
-public kazalistaCijenaPreusmjeri():void{ this.router.navigate(['dodaj-kazalista-cijene']);}
+//Kazalista
+public kazalistaPreusmjeri():void       { this.router.navigate(['dodaj-kazalista']);        }
+public kazalistaCijenaPreusmjeri():void { this.router.navigate(['dodaj-kazalista-cijena']); }
 
 }
 
