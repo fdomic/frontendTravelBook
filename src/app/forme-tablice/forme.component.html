@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container"> <!--DRZAVA-->
   <h1>Drzave</h1>
     <nz-table #middleTable nzSize="middle" [nzData]="this.DrzaveLista " 
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
@@ -42,10 +42,7 @@
   <button (click)="this.nazad()" nz-button style="background-color: red;">Nazad</button>
 </div>
 
-
-
-
-<div class="container">
+<div class="container"> <!--GRADOVI-->
   <h1>Gradovi</h1>
     <nz-table #basicTable [nzData]="this.GradoviLista"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
@@ -64,7 +61,7 @@
       </thead>
       <tbody >
         <tr *ngFor="let grad of this.GradoviLista">
-          <td>{{ this.getNazivDrzave(grad.id_drzave) }}</td>
+          <td>{{ this.getNaziv(grad.id_drzave,1) }}</td>
           <td>{{ grad.naziv_grada }}     </td>
           <td>{{ grad.gradonacelnik }}   </td>
           <td>{{ grad.nadmorska_visina }}</td>
@@ -81,10 +78,10 @@
     </nz-table>
 </div>
 
+<div class="container"><!--POZNATE ZNAMENITOSTI-->
 
-
-<div class="container">
-<h1>Poznate znamenitosti</h1>
+  <h1>Poznate znamenitosti</h1>
+  <!--POZNATE ZNAMENITOSTI TABLICA-->
   <nz-table #basicTable [nzData]="this.PoznateZnamenitostiLista"
   style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
    
@@ -105,7 +102,7 @@
        <tr *ngFor="let znamenitosti of this.PoznateZnamenitostiLista">
 
         
-        <td>{{ this.getNazivGrada(znamenitosti.id_grada) }}</td>
+        <td>{{ this.getNaziv(znamenitosti.id_grada,2) }}</td>
         <td>{{ znamenitosti.ime_gradevine }}    </td>
         <td>{{ znamenitosti.arhitekt }}         </td>
         <td>{{ znamenitosti.godina_izgradnje }} </td>
@@ -122,16 +119,47 @@
       </tr>
     </tbody>
   </nz-table>
+
+  <h2>Poznate zanemnitosti cijena</h2>
+  <!--POZNATE ZNAMENITOSTI CIJENA TABLICA-->
+  <nz-table #basicTable [nzData]="this.PoznateZnamenitostiCijenaLista"
+  style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+    <thead>
+      <tr>
+        <th>poznate_znamenitosti </th>
+        <th>karta                   </th>
+        <th>opis                    </th>
+        <th>trajanje_karte          </th>
+        <th>cijena                  </th>
+        <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+      </tr>
+    </thead>
+    <tbody >
+       <tr *ngFor="let znamenitostiCijena of this.PoznateZnamenitostiCijenaLista">
+        <td>{{ this.getNaziv(znamenitostiCijena.id_poznate_znamenitosti,3) }}</td>
+        <td>{{ znamenitostiCijena.karta }}          </td>
+        <td>{{ znamenitostiCijena.opis }}           </td>
+        <td>{{ znamenitostiCijena.trajanje_karte }} </td>
+        <td>{{ znamenitostiCijena.cijena }}         </td>
+        <td>
+          <button nz-button nzType="primary" (click)="this.submitPodatak(znamenitostiCijena.id,31)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+          <button nz-button nzType="primary" (click)="this.brisiPodatak(znamenitostiCijena.id,31)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+        </td>
+  
+      </tr>
+    </tbody>
+  </nz-table>
+
 </div>
 
-<div class="container">
-  <h1>Muzeji</h1>
+<div class="container"><!--MUZEJI-->
+    <h1>Muzeji</h1>
     <nz-table #basicTable [nzData]="this.MuzejiLista"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
      
       <thead>
         <tr>
-          <th>id_grada         </th>
+          <th>grad        </th>
           <th>ime_gradevine    </th>
           <th>arhitekt         </th>
           <th>godina_izgradnje </th>
@@ -163,9 +191,39 @@
         </tr>
       </tbody>
     </nz-table>
-  </div>
 
-  <div class="container">
+    <h2>Muzeji cijena</h2>
+    <!--MUZEJI CIJENA TABLICA-->
+    <nz-table #basicTable [nzData]="this.MuzejiCijenaLista"
+    style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+      <thead>
+        <tr>
+          <th>muzej </th>
+          <th>karta                   </th>
+          <th>opis                    </th>
+          <th>trajanje_karte          </th>
+          <th>cijena                  </th>
+          <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+        </tr>
+      </thead>
+      <tbody >
+         <tr *ngFor="let muzejCijena of this.MuzejiCijenaLista">
+          <td>{{ this.getNaziv(muzejCijena.id_muzeji,4) }}</td>
+          <td>{{ muzejCijena.karta }}          </td>
+          <td>{{ muzejCijena.opis }}           </td>
+          <td>{{ muzejCijena.trajanje_karte }} </td>
+          <td>{{ muzejCijena.cijena }}         </td>
+          <td>
+            <button nz-button nzType="primary" (click)="this.submitPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary" (click)="this.brisiPodatak(muzejCijena.id,41)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+          </td>
+    
+        </tr>
+      </tbody>
+    </nz-table>
+</div>
+
+<div class="container"><!--KLUBOVI-->
     <h1>Klubovi</h1>
       <nz-table #basicTable [nzData]="this.KluboviLista"
       style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
@@ -204,10 +262,42 @@
           </tr>
         </tbody>
       </nz-table>
-    </div>
+
+      
+    <h2>Klubovi cijena</h2>
+    <!--KLUBOVI CIJENA TABLICA-->
+    <nz-table #basicTable [nzData]="this.KluboviCijenaLista"
+    style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+      <thead>
+        <tr>
+          <th>klub</th>
+          <th>karta                   </th>
+          <th>opis                    </th>
+          <th>trajanje_karte          </th>
+          <th>cijena                  </th>
+          <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+        </tr>
+      </thead>
+      <tbody >
+         <tr *ngFor="let klubcijena of this.KluboviCijenaLista">
+          <td>{{ this.getNaziv(klubcijena.id_klubovi,5) }}</td>
+          <td>{{ klubcijena.karta }}          </td>
+          <td>{{ klubcijena.opis }}           </td>
+          <td>{{ klubcijena.trajanje_karte }} </td>
+          <td>{{ klubcijena.cijena }}         </td>
+          <td>
+            <button nz-button nzType="primary" (click)="this.submitPodatak(klubcijena.id,51)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+            <button nz-button nzType="primary" (click)="this.brisiPodatak(klubcijena.id,51)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+          </td>
+    
+        </tr>
+      </tbody>
+    </nz-table>
 
 
-    <div class="container">
+</div>
+
+<div class="container"><!--KAZALISTA-->
       <h1>Kazalista</h1>
         <nz-table #basicTable [nzData]="this.KazalistaLista"
         style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
@@ -246,9 +336,40 @@
             </tr>
           </tbody>
         </nz-table>
-      </div>
 
-      <div class="container">
+        <h2>Kazalista cijena</h2>
+        <!--KAZALISTA CIJENA TABLICA-->
+        <nz-table #basicTable [nzData]="this.KazalistaCijenaLista"
+        style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+          <thead>
+            <tr>
+              <th>kazaliste</th>
+              <th>karta                   </th>
+              <th>opis                    </th>
+              <th>trajanje_karte          </th>
+              <th>cijena                  </th>
+              <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+            </tr>
+          </thead>
+          <tbody >
+             <tr *ngFor="let kazalistecijena of this.KazalistaCijenaLista">
+              <td>{{ this.getNaziv(kazalistecijena.id_kazalista,6) }}</td>
+              <td>{{ kazalistecijena.karta }}          </td>
+              <td>{{ kazalistecijena.opis }}           </td>
+              <td>{{ kazalistecijena.trajanje_karte }} </td>
+              <td>{{ kazalistecijena.cijena }}         </td>
+              <td>
+                <button nz-button nzType="primary" (click)="this.submitPodatak(kazalistecijena.id,61)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                <button nz-button nzType="primary" (click)="this.brisiPodatak(kazalistecijena.id,61)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+              </td>
+        
+            </tr>
+          </tbody>
+        </nz-table>
+    
+</div>
+
+<div class="container"><!--DVORCI-->
         <h1>Dvorci</h1>
           <nz-table #basicTable [nzData]="this.DvorciLista"
           style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
@@ -283,8 +404,38 @@
               </tr>
             </tbody>
           </nz-table>
-        </div>
 
+          <h2>Dvorci cijena</h2>
+          <!--DVORCI CIJENA TABLICA-->
+          <nz-table #basicTable [nzData]="this.DvorciCijenaLista"
+          style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
+            <thead>
+              <tr>
+                <th>dvorci</th>
+                <th>karta                   </th>
+                <th>opis                    </th>
+                <th>trajanje_karte          </th>
+                <th>cijena                  </th>
+                <th><button nz-button nzType="primary" (click)="this.poznataZnamenitostPreusmjeri()"nzShape="circle" style="background-color:chartreuse;" > <i nz-icon nzType="plus" nzTheme="outline"></i></button></th>
+              </tr>
+            </thead>
+            <tbody >
+               <tr *ngFor="let dvorcicijena of this.DvorciCijenaLista">
+                <td>{{ this.getNaziv(dvorcicijena.id_dvorci,7) }}</td>
+                <td>{{ dvorcicijena.karta }}          </td>
+                <td>{{ dvorcicijena.opis }}           </td>
+                <td>{{ dvorcicijena.trajanje_karte }} </td>
+                <td>{{ dvorcicijena.cijena }}         </td>
+                <td>
+                  <button nz-button nzType="primary" (click)="this.submitPodatak(dvorcicijena.id,71)" nzShape="circle" style="background-color:yellow;" >     <i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                  <button nz-button nzType="primary" (click)="this.brisiPodatak(dvorcicijena.id,71)" nzShape="circle" style="background-color:red;" >        <i nz-icon nzType="close" nzTheme="outline"></i></button>
+                </td>
+          
+              </tr>
+            </tbody>
+          </nz-table>
+      
+</div>
 
 <div><p>.</p></div>
 

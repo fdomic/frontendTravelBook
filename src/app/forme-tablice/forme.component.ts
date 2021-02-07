@@ -17,11 +17,21 @@ export class FormeComponent implements OnInit {
   
   public GradoviLista: Array<any> = [];  
   public DrzaveLista: Array<any> = [];
+
   public PoznateZnamenitostiLista: Array<any> = [];
+  public PoznateZnamenitostiCijenaLista: Array<any> = [];
+
   public MuzejiLista: Array<any> = [];
+  public MuzejiCijenaLista: Array<any> = [];
+
   public DvorciLista: Array<any> = [];
+  public DvorciCijenaLista: Array<any> = [];
+
   public KluboviLista: Array<any> = [];
+  public KluboviCijenaLista: Array<any> = [];
+
   public KazalistaLista: Array<any> = [];
+  public KazalistaCijenaLista: Array<any> = [];
 
   public id: any;
   public classGrad: DodajGradComponent ;
@@ -51,9 +61,19 @@ export class FormeComponent implements OnInit {
       response => this.PoznateZnamenitostiLista = response.data,
       error => console.log(error)
     )
+    //Poznate znamenitosti cijena
+     this.apiService.dohvatiPoznatuZnamenitostCijena().subscribe(
+      response => this.PoznateZnamenitostiCijenaLista = response.data,
+      error => console.log(error)
+    )
     //Muzeji
     this.apiService.dohvatiMuzeje().subscribe(
       response => this.MuzejiLista = response.data,
+      error => console.log(error)
+    )
+    //Muzeji cijena
+     this.apiService.dohvatiMuzejiCijena().subscribe(
+      response => this.MuzejiCijenaLista = response.data,
       error => console.log(error)
     )
     //Dvorci
@@ -61,9 +81,19 @@ export class FormeComponent implements OnInit {
       response => this.DvorciLista = response.data,
       error => console.log(error)
     )
+    //Dvorci cijena
+    this.apiService.dohvatiDvorciCijena().subscribe(
+      response => this.DvorciCijenaLista = response.data,
+      error => console.log(error)
+    )
     //Kazalista
     this.apiService.dohvatiKazalista().subscribe(
       response => this.KazalistaLista = response.data,
+      error => console.log(error)
+    )
+    //Kazalista cijena
+    this.apiService.dohvatiKazalistaCijena().subscribe(
+      response => this.KazalistaCijenaLista = response.data,
       error => console.log(error)
     )
     //Klubovi
@@ -71,6 +101,79 @@ export class FormeComponent implements OnInit {
       response => this.KluboviLista = response.data,
       error => console.log(error)
     )
+    //Klubovi cijena
+    this.apiService.dohvatiKluboviCijena().subscribe(
+      response => this.KluboviCijenaLista = response.data,
+      error => console.log(error)
+    )
+   
+
+  }
+
+  public getNaziv(id_naziv: any, broj): any {
+
+
+    if(broj==1){//Drzava 
+      for (const i in this.DrzaveLista) {
+        if(this.DrzaveLista[i].id == id_naziv)  {
+          return this.DrzaveLista[i].naziv_drzave;
+        }
+      }
+    }
+
+    if(broj==2){//Grad 
+      for (const i in this.GradoviLista) {
+        if(this.GradoviLista[i].id == id_naziv)  {
+          return this.GradoviLista[i].naziv_grada;
+        }
+      }
+    }
+
+    if(broj==3){//Poznata znamenitost 
+      for (const i in this.PoznateZnamenitostiLista) {
+        if(this.PoznateZnamenitostiLista[i].id == id_naziv)  {
+          return this.PoznateZnamenitostiLista[i].ime_gradevine;
+        }
+      }
+    }
+
+    if(broj==4){//Muzej
+      for (const i in this.MuzejiLista) {
+        if(this.MuzejiLista[i].id == id_naziv)  {
+          return this.MuzejiLista[i].ime_gradevine;
+        }
+      }
+    }
+
+    if(broj==5){//Klub
+      for (const i in this.KluboviLista) {
+        if(this.KluboviLista[i].id == id_naziv)  {
+          return this.KluboviLista[i].ime_gradevine;
+        }
+      }
+    }
+
+    
+    if(broj==6){//Kazaliste
+      for (const i in this.KazalistaLista) {
+        if(this.KazalistaLista[i].id == id_naziv)  {
+          return this.KazalistaLista[i].ime_gradevine;
+        }
+      }
+    }
+
+    
+    if(broj==7){//Dvorci
+      for (const i in this.DvorciLista) {
+        if(this.DvorciLista[i].id == id_naziv)  {
+          return this.DvorciLista[i].ime_gradevine;
+        }
+      }
+    }
+
+
+
+
   }
 
   public getNazivDrzave(id_drzave: any): any {
@@ -90,13 +193,24 @@ export class FormeComponent implements OnInit {
   }
 
   public submitPodatak(podatak,ruta):any{
-    if(ruta == 1){ this.router.navigate(['dodaj-drzavu/'+podatak]);                }
-    if(ruta == 2){ this.router.navigate(['dodaj-grad/'+podatak]);                  }
-    if(ruta == 3){ this.router.navigate(['dodaj-poznatu-znamenitost/'+podatak]);   }
-    if(ruta == 4){ this.router.navigate(['muzej/'+podatak]);                       }
-    if(ruta == 5){ this.router.navigate(['dvorci/'+podatak]);                       }
-    if(ruta == 6){ this.router.navigate(['klubovi/'+podatak]);                     }
-    if(ruta == 7){ this.router.navigate(['kazalista/'+podatak]);                   }
+    if(ruta == 1){ this.router.navigate(['dodaj-drzavu/'+podatak]);                     }
+    if(ruta == 2){ this.router.navigate(['dodaj-grad/'+podatak]);                       }
+    //-
+    if(ruta == 3){ this.router.navigate(['dodaj-poznatu-znamenitost/'+podatak]);        }
+    if(ruta == 3){ this.router.navigate(['dodaj-poznate-znamenitosti-cijene/'+podatak]);}
+    //-
+    if(ruta == 4){ this.router.navigate(['dodaj-muzej/'+podatak]);                       }
+    if(ruta == 41){ this.router.navigate(['dodaj-muzeji-cijene/'+podatak]);              }
+    if(ruta == 41){ this.router.navigate(['dodaj-poznata-dijela/'+podatak])              }
+    //-
+    if(ruta == 5){ this.router.navigate(['dodaj-klubovi/'+podatak]);                     }
+    if(ruta == 51){ this.router.navigate(['dodaj-klubovi-cijene/'+podatak]);             }
+    //-
+    if(ruta == 6){ this.router.navigate(['dodaj-kazalista/'+podatak]);                   }
+    if(ruta == 61){ this.router.navigate(['dodaj-kazalista-cijene/'+podatak]);           }
+    //-
+    if(ruta == 7){ this.router.navigate(['dodaj-dvorci/'+podatak]);                      }
+    if(ruta == 71){ this.router.navigate(['dodaj-dvorci-cijene/'+podatak]);              }
   }
 
   public brisiPodatak(podatakId ,brisi ):any{
@@ -165,14 +279,20 @@ public drzavePreusmjeri():void{ this.router.navigate(['dodaj-drzavu']);}
 public gradPreusmjeri():void{ this.router.navigate(['dodaj-grad']);}
 
 public poznataZnamenitostPreusmjeri():void {this.router.navigate(['dodaj-poznatu-znamenitost']);}
+public poznataZnamenitostCijenaPreusmjeri():void {this.router.navigate(['dodaj-poznate-znamenitosti-cijene']);}
 
-public muzejiPreusmjeri():void{ this.router.navigate(['muzej']);}
+public muzejiPreusmjeri():void{ this.router.navigate(['dodaj-muzej']);}
+public muzejiCijenaPreusmjeri():void{ this.router.navigate(['dodaj-muzeji-cijene']);}
+public muzejiPoznataDijelaPreusmjeri():void{ this.router.navigate(['dodaj-poznata-dijela']);}
 
-public dvoracPreusmjeri():void{ this.router.navigate(['dvorci']);}
+public dvoracPreusmjeri():void{ this.router.navigate(['dodaj-dvorci']);}
+public dvoracCijenaPreusmjeri():void{ this.router.navigate(['dodaj-dvorci-cijene']);}
 
-public kluboviPreusmjeri():void{ this.router.navigate(['klubovi']);}
+public kluboviPreusmjeri():void{ this.router.navigate(['dodaj-klubovi']);}
+public kluboviCijenaPreusmjeri():void{ this.router.navigate(['dodaj-klubovi-cijene']);}
 
-public kazalistaPreusmjeri():void{ this.router.navigate(['kazalista']);}
+public kazalistaPreusmjeri():void{ this.router.navigate(['dodaj-kazalista']);}
+public kazalistaCijenaPreusmjeri():void{ this.router.navigate(['dodaj-kazalista-cijene']);}
 
 }
 

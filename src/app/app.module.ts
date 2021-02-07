@@ -22,7 +22,7 @@ import { ApiService } from './api.services';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FormeComponent } from './forme/forme.component';
+import { FormeComponent } from './forme-tablice/forme.component';
 import { NavigationComponent } from './travelBook/navigation/navigation.component';
 import { DodajDrzavuComponent } from './travelBook/Forme/dodaj-drzavu/dodaj-drzavu.component';
 import { DodajGradComponent } from './travelBook/Forme/dodaj-grad/dodaj-grad.component';

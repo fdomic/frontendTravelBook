@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormeComponent } from './forme/forme.component';
+import { FormeComponent } from './forme-tablice/forme.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './travelBook/navigation/navigation.component'
 import { DodajDrzavuComponent } from './travelBook/Forme/dodaj-drzavu/dodaj-drzavu.component';
@@ -31,20 +31,20 @@ const routes: Routes = [
   { path: "dodaj-poznatu-znamenitost/:id", component: DodajPoznateZnamenitostiComponent },
 
   //Muzej
-  { path: "muzej",         component: DodajMuzejeComponent },
-  { path: "muzej/:id",     component: DodajMuzejeComponent },
+  { path: "dodaj-muzej",         component: DodajMuzejeComponent },
+  { path: "dodaj-muzej/:id",     component: DodajMuzejeComponent },
 
    //Dvorci
-   { path: "dvorci",         component: DodajDvorceComponent },
-   { path: "dvorci/:id",     component: DodajDvorceComponent },
+   { path: "dodaj-dvorci",         component: DodajDvorceComponent },
+   { path: "dodaj-dvorci/:id",     component: DodajDvorceComponent },
 
    //Klubovi
-   { path: "klubovi",         component: DodajKluboveComponent },
-   { path: "klubovi/:id",     component: DodajKluboveComponent },
+   { path: "dodaj-klubovi",         component: DodajKluboveComponent },
+   { path: "dodaj-klubovi/:id",     component: DodajKluboveComponent },
 
    //Klubovi
-   { path: "kazalista",         component: DodajKazalistaComponent },
-   { path: "kazalista/:id",     component: DodajKazalistaComponent },
+   { path: "dodaj-kazalista",         component: DodajKazalistaComponent },
+   { path: "dodaj-kazalista/:id",     component: DodajKazalistaComponent },
 
   { path: '',       pathMatch: 'full',  redirectTo: 'login' },
   { path: "**",     pathMatch: "full",  redirectTo: "login" }
