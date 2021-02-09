@@ -118,10 +118,8 @@
 
     
     <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-    <button (click)="this.KreirajGrad()" nz-button class="login-form-button login-form-margin">Spremi</button>
-    
-    <button (click)="this.NadiGrad()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-    <button (click)="this.AzurirajGrad()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+    <button *ngIf="this.isNoviGrad() === false" (click)="this.KreirajGrad()" nz-button class="login-form-button login-form-margin">Spremi</button>
+    <button *ngIf="this.isNoviGrad() === true" (click)="this.AzurirajGrad()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
     
 </form>
 

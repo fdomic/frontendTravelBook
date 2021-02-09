@@ -1,106 +1,143 @@
-<div class="containerS" >	
 
-
-   
-	<input type="checkbox" id="check"><label for="check"><i class="fas fa-bars" id="sidebar_btn"></i> </label>
-
-    <div class="sidebar">
-      <div class="person">
-        <img src="word-image.gif" class="profile_image" alt="">
-        
-	  </div>
-	  <h4>Netko</h4>
-
-	  
-
-	  <a href="navigation#0"><i class="fas fa-desktop"></i><span>Pocetna</span></a>
-	  <a href="forme"><i class="fas fa-th"></i><span>Upisi</span></a>
-	  <a href="navigation#6"><i class="fas fa-info-circle"></i><span>O nama</span></a>
-	
-	<!--
-	  <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
-      <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
-      <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
-	  <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
-	-->
-    </div>
- 
-
+  <div class="containerS">
+    <a href="navigation#0"
+      ><i class="fas fa-desktop"></i><span>Pocetna</span></a
+    >
+    <a href="forme"><i class="fas fa-th"></i><span>Upisi</span></a>
+    <a href="navigation#6"
+      ><i class="fas fa-info-circle"></i><span>O nama</span></a
+    >
 
     <div class="content">
+      <div id="0" class="divText">
+        <div class="row">
+          <div class="col col1">
+            <div class="text">
+              <h1></h1>
+              <p></p>
+            </div>
+            <a href="navigation#1">ISTRAŽI</a>
+          </div>
+          <div class="col">
+            <a href="navigation#2">
+              <div class="card card1">
+                <h2>Znamenitosti</h2>
+                >
+              </div>
+            </a>
+            <a href="navigation#3">
+              <div class="card card2"><h2>Muzeji</h2></div>
+            </a>
+            <a href="navigation#4">
+              <div class="card card3"><h2>Kazalista</h2></div>
+            </a>
+            <a href="navigation#5">
+              <div class="card card4"><h2>Dvorci</h2></div>
+            </a>
+          </div>
+        </div>
+      </div>
 
-		<div id="0" class="divText"  >
-			<div class="row">
-				<div class="col col1" >
-					<div class="text">
-							
-								<h1 ></h1>
-								<p></p>
-						
-					</div>
+      <div id="1" class="divPage" style="background-color: white">
+        <div class="mainContRot">
+          <div class="cardRot middle">
+            <div
+              class="front"
+              style="
+                background-image: url(https://thumbs.dreamstime.com/b/museum-icon-collection-trendy-modern-flat-linear-vector-white-background-thin-line-outline-illustration-130955277.jpg);
+                background-size: cover;
+              "
+            ></div>
 
-					
-					<a href="navigation#1"  (click)="this.submitFormNadiGrad()" >ISTRAŽI</a>	
-					
-				</div>
-				<div class="col" >
+            <div class="back">
+              <div class="back-content middle">
+                
+              </div>
+            </div>
+            
+          </div>
 
+          <div
+            *ngFor="let Muzej of this.MuzejiZaPrikaz()"
+            class="cardRot middle"
+          >
+            <div
+              class="front"
+              [style]="
+                'background-image: url(' +
+                Muzej.slika +
+                '); background-size: cover;'
+              "
+            >
+              <div class="frontPanel">
+                <h1>{{ Muzej.ime_gradevine }}</h1>
+              </div>
+            </div>
 
-					<a href="navigation#2" > <div class="card card1" ><h2>Znamenitosti</h2>></div> </a>
-					
-					<a href="navigation#3" > <div class="card card2" ><h2>Muzeji</h2></div> </a>
-					
-					<a href="navigation#4" > <div class="card card3" ><h2>Kazalista</h2></div> </a>
-					
-					<a href="navigation#5" > <div class="card card4" ><h2>Dvorci</h2></div> </a>
-					
-				</div>
+            <div class="back">
+              <div class="back-content middle">
+                <ul nz-list nzBordered nzSize="large">
+                  <li>
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                    <a>{{ Muzej.ime_gradevine }}</a>
+                  </li>
 
-			</div>
-			
-			
-	  </div>
-	  
-			
-		<div id="1" class="divPage" style="background-color:chartreuse"> 
+                  <li>
+                    <i nz-icon nzType="calendar" nzTheme="outline"></i>
+                    <a>{{ Muzej.godina_izgradnje }}</a>
+                  </li>
 
-			<a href="navigation#2" > <div class="card card1" ><h2>Znamenitosti</h2>></div> </a>
-					
-			<a href="navigation#3" > <div class="card " ><h2>Muzeji</h2></div> </a>
-			
-			<a href="navigation#4" > <div class="card card3" ><h2>Opere</h2></div> </a>
-			
-			<a href="navigation#5" > <div class="card " ><h2>Dvorci</h2></div> </a>
+                  <li>
+                    <i nz-icon nzType="file-text" nzTheme="outline"></i>
+                    <a>{{ Muzej.opis_kraci }}</a>
+                  </li>
 
+                  <li>
+                    <i nz-icon nzType="comment" nzTheme="outline"></i>
+                  </li>
 
-			<a href="navigation#2" > <div class="card " ><h2>Znamenitosti</h2>></div> </a>
-			
-			<a href="navigation#3" > <div class="card card2" ><h2>Muzeji</h2></div> </a>
-			
-			<a href="navigation#4" > <div class="card " ><h2>Opere</h2></div> </a>
-			
-			<a href="navigation#5" > <div class="card card4" ><h2>Dvorci</h2></div> </a>
-			
+                  <li>
+                    <i nz-icon nzType="paper-clip" nzTheme="outline"></i>
+                    <a>{{ Muzej.sluzbena_stranica }}</a>
+                  </li>
+                </ul>
+              </div>
 
-			<a href="navigation#2" > <div class="card card1" ><h2>Znamenitosti</h2>></div> </a>
-					
-			<a href="navigation#3" > <div class="card " ><h2>Muzeji</h2></div> </a>
-			
-			<a href="navigation#4" > <div class="card card3" ><h2>Opere</h2></div> </a>
-			
-			<a href="navigation#5" > <div class="card " ><h2>Dvorci</h2></div> </a>
+              <button>Istraži</button>
 
-		
-			
-		</div>
-		<div id="2" class="divPage" style="background-color: brown;"> <h1>DRUGI</h1></div>
-		<div id="3" class="divPage" style="background-color: rgb(238, 223, 15);"> <h1>TRECI</h1></div>
-		<div id="4" class="divPage" style="background-color: rgb(22, 121, 9);"> <h1>CETVRTI</h1></div>
-		<div id="5" class="divPage" style="background-color: rgb(42, 50, 165);"> <h1>PETI</h1></div>
-		<div id="6" class="divPage" style="background-color: rgb(31, 32, 47);"> <h1>O nama</h1></div>
-		
- 
-</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div id="2" class="divPage" style="background-color: brown">
+        <h1>DRUGI</h1>
+      </div>
+      <div id="3" class="divPage" style="background-color: rgb(238, 223, 15)">
+        <h1>TRECI</h1>
+      </div>
+      <div id="4" class="divPage" style="background-color: rgb(22, 121, 9)">
+        <h1>CETVRTI</h1>
+      </div>
+      <div id="5" class="divPage" style="background-color: rgb(42, 50, 165)">
+        <h1>PETI</h1>
+      </div>
+      <div id="6" class="divPage" style="background-color: rgb(31, 32, 47)">
+        <h1>O nama</h1>
+      </div>
+    </div>
+    <section id="slider">
+      <input type="radio" name="slider" id="s1" checked />
+      <input type="radio" name="slider" id="s2" />
+      <input type="radio" name="slider" id="s3" />
+      <input type="radio" name="slider" id="s4" />
+      <input type="radio" name="slider" id="s5" />
 
- 
+      <label for="s1" id="slide1">1</label>
+      <label for="s2" id="slide2">2</label>
+      <label for="s3" id="slide3">3</label>
+      <label for="s4" id="slide4">4</label>
+      <label for="s5" id="slide5">5</label>
+    </section>
+  </div>
+

@@ -44,7 +44,7 @@
 
 <div class="container"> <!--GRADOVI-->
   <h1>Gradovi</h1>
-    <nz-table #basicTable [nzData]="this.GradoviLista"
+    <nz-table #basicTable [nzData]="this.GradoviLista" [nzLoading]="this.GradoviUcitavanje"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
       <thead>
         <tr>
@@ -437,9 +437,8 @@
       
 </div>
 
-
-
-
-
 <div><p>.</p></div>
+
+
+
 

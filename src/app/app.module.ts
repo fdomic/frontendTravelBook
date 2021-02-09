@@ -17,6 +17,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzListModule } from 'ng-zorro-antd/list';
 
 import { ApiService } from './api.services';
 import { AppRoutingModule } from './app-routing.module';
@@ -76,7 +77,8 @@ registerLocaleData(en);
     NzMessageModule,
     NzFormModule,
     NzDatePickerModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzListModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

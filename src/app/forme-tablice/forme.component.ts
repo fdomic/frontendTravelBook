@@ -14,7 +14,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class FormeComponent implements OnInit {
 
-  
+  public GradoviUcitavanje: boolean = false;
   public GradoviLista: Array<any> = [];  
   public DrzaveLista: Array<any> = [];
 
@@ -52,8 +52,12 @@ export class FormeComponent implements OnInit {
       error => console.log(error)
     )
     //GradoviLista
+    this.GradoviUcitavanje = true;
     this.apiService.dohvatiGrad().subscribe(
-      response => this.GradoviLista = response.data,
+      response => {
+        this.GradoviLista = response.data;
+        this.GradoviUcitavanje = false;
+      },
       error => console.log(error)
     )
     //Poznate znamenitosti

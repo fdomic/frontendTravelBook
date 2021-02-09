@@ -5,19 +5,16 @@ export interface KreirajMuzejInterface {
 
 export interface MuzejInterface {
     id: number;
-    
-    naziv_drzave:      string;
-    glavni_grad:       string;
-    sluzbeni_jezik:    string;
-    predsjednik:       string;
-    predsjednik_vlade: string;
-    neovisnost:        string;
-    povrsina:          number;
-    stanovnistvo:      number;
-    valuta:            string;
-    pozivni_broj:      number;
-    slika:             string;
-    sluzbena_stranica: string;
+
+    id_grada: number;
+    ime_gradevine: string;
+    arhitekt: number;
+    godina_izgradnje: string;
+    opis_kraci: number;
+    opis_duzi: number;
+    adresa: number;
+    sluzbena_stranica: number;
+    slika: number;
 
     updated_at: string;
     created_at: string;
