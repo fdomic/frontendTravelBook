@@ -1,5 +1,23 @@
 
-<div class="container" >
+<nz-spin
+nzTip="Loading..."
+[nzSize]="'large'"
+[nzSpinning]="this.PoznateZnamenitostiUcitavanje"
+>
+<nz-result
+  *ngIf="this.Uspjesno === true"
+  nzStatus="success"
+  nzTitle="Uspjesno je spremljeno !"
+  nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
+>
+  <div nz-result-extra>
+    <button nz-button (click)="this.Forma()">Forma</button>
+    <button nz-button (click)="this.Nazad()">Nazad</button>
+  </div>
+</nz-result>
+
+
+<div class="container"  *ngIf="this.Uspjesno === false">
 <form nz-form [formGroup]="this.validateForm" >
     
     <nz-form-item>
@@ -67,10 +85,11 @@
     
 </form>
 
-<button (click)="this.nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-<button (click)="this.KreirajPoznatuZnamenitost()"nz-button class="login-form-button login-form-margin">Spremi</button>
-<button (click)="this.NadiZnamenitost()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-<button (click)="this.AzurirajPoznatuZnamenitost()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+<button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
+<button *ngIf="this.isNovaPoznataZnamenitost() === false" (click)="this.KreirajPoznatuZnamenitost()"nz-button class="login-form-button login-form-margin">Spremi</button>
+<button *ngIf="this.isNovaPoznataZnamenitost() === true" (click)="this.AzurirajPoznatuZnamenitost()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
 
 
 </div>
+
+</nz-spin>

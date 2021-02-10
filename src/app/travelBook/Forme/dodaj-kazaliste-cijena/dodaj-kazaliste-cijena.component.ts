@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from 'src/app/api.services';
+import { KazalisteCijenaInterface } from 'src/app/interface/KreirajKazalistaCijenaInterface';
+import { KazalistaInterface } from 'src/app/interface/KreirajKazalistaInterface';
 
 @Component({
   selector: 'app-dodaj-kazaliste-cijena',
@@ -14,7 +16,10 @@ export class DodajKazalisteCijenaComponent implements OnInit {
  
   public id ;
   public validateForm: FormGroup;
-  public kazalisteCijenaLista: Array<any> = [];
+  public KazalisteCijenaLista: Array<KazalisteCijenaInterface> = [];
+
+  public KazalistaCijenaUcitavanje: boolean = false;
+  public Uspjesno: boolean = false;
 
   public ValueVrijemTrajanja = 1;
   public formatterMIN = (value: number) => ` ${value} min`;
@@ -32,10 +37,21 @@ export class DodajKazalisteCijenaComponent implements OnInit {
     private ruta: ActivatedRoute ) {
 
       this.initForm();
-      this.dohvatiPodatke();
-      this.setId();
-
   }
+
+  public ngOnInit(): void {
+    this.setId();
+    this.dohvatiPodatke();
+  }
+
+  public onChange(result: Date): void {
+    this.validateForm.value.updated_at = result;
+  }
+
+  public isNoviKazalisteCijena(): boolean {
+    return !!this.id;
+  }
+
 
   private initForm(): void {
     
@@ -52,16 +68,24 @@ export class DodajKazalisteCijenaComponent implements OnInit {
   private dohvatiPodatke(): void {
     
       this.apiService.dohvatiKazalistaCijena().subscribe(
-        response => this.kazalisteCijenaLista = response.data,
+
+        (response) => {
+          this.KazalisteCijenaLista = response.data;
+          if (this.isNoviKazalisteCijena() === true) {
+            this.NadiKazalisteCijena();
+          }
+        },
         error => console.log(error)
       )
 
   }
 
-  public setId(): void{ this.id = this.ruta.snapshot.params; }
-  public onChange(result: Date): void { this.validateForm.value.godina_izgradnje = result;}
-  public ngOnInit(): void {}
-
+  public setId(): void {
+    if (this.ruta.snapshot.params.id) {
+      this.id = parseInt(this.ruta.snapshot.params.id);
+      this.KazalistaCijenaUcitavanje = true;
+    }
+  }
   
   // ========= HTML METODE =========
 
@@ -84,10 +108,9 @@ export class DodajKazalisteCijenaComponent implements OnInit {
       ).subscribe(response => {
         if(response ) {
           console.log(this.validateForm.value);
-          this.createMessage("success");
+          this.Uspjesno = true;
           this.dohvatiPodatke();
           this.initForm();
-          this.router.navigate(['forme']);
         }
       },
       error => console.log(error,this.createMessage("error"))
@@ -107,10 +130,9 @@ export class DodajKazalisteCijenaComponent implements OnInit {
       ).subscribe(response => {
         if(response ) {
           console.log(this.validateForm.value);
-          this.createMessage("success");
+          this.Uspjesno = true;
           this.dohvatiPodatke();
           this.initForm();
-          this.router.navigate(['forme']);
         }
       },
       error => console.log(error,this.createMessage("error"))
@@ -118,21 +140,26 @@ export class DodajKazalisteCijenaComponent implements OnInit {
 
   }
 
-  public NadiKazalisteCijena(): void {
+  private popuniFormuIzModela(model: KazalisteCijenaInterface): void {
+    this.validateForm.patchValue({
+      id_kazalista: model.id_kazalista,
+      karta: model.karta,
+      opis: model.opis,
+      trajanje_karte: model.trajanje_karte,
+      cijena: model.cijena,
+    });
+  }
 
-  for (const i in this.kazalisteCijenaLista) {
-      if(this.kazalisteCijenaLista
-      [i].id == this.id.id )  {
-        this.validateForm = this.fb.group({
-        id_kazalista:  [this.kazalisteCijenaLista[i].id_kazalista],
-        karta:         [this.kazalisteCijenaLista[i].karta],
-        opis:          [this.kazalisteCijenaLista[i].opis],
-        trajanje_karte:[this.kazalisteCijenaLista[i].trajanje_karte],
-        cijena:        [this.kazalisteCijenaLista[i].cijena],
-        });
-        this.id = this.kazalisteCijenaLista[i].id;
-        break;
-      }
+  // Pronadi sve podatke 
+  public NadiKazalisteCijena(): any {
+    let model = this.KazalisteCijenaLista.find(
+      (kazaliste_cijena) => kazaliste_cijena.id === this.id
+    );
+    if (model) {
+      this.popuniFormuIzModela(model);
+      this.KazalistaCijenaUcitavanje = false;
+    } else {
+      console.log('[ERROR] Nisam pronašao kazaliste cijena !!!');
     }
   }
 
@@ -150,6 +177,10 @@ export class DodajKazalisteCijenaComponent implements OnInit {
   
   public Nazad():any{this.router.navigate(['forme']);}
 
+ 
+  public Forma(): any {
+    this.Uspjesno = false;
+  }
 
 
   

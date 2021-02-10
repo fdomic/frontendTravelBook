@@ -1,5 +1,22 @@
 
-<div class="container" >
+<nz-spin
+nzTip="Loading..."
+[nzSize]="'large'"
+[nzSpinning]="this.MuzejCijenaUcitavanje"
+>
+<nz-result
+  *ngIf="this.Uspjesno === true"
+  nzStatus="success"
+  nzTitle="Uspjesno je spremljen podatak!"
+  nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
+>
+  <div nz-result-extra>
+    <button nz-button (click)="this.Forma()">Forma</button>
+    <button nz-button (click)="this.Nazad()">Nazad</button>
+  </div>
+</nz-result>
+
+<div class="container" *ngIf="this.Uspjesno === false">
   <form nz-form [formGroup]="this.validateForm" >
 
     <nz-form-item>
@@ -58,8 +75,9 @@
   </form>
 
   <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-  <button (click)="this.KreirajMuzejCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
-  <button (click)="this.NadiMuzejCijena()" nz-button class="login-form-button login-form-margin" style="background-color: orange;">Nadi</button>
-  <button (click)="this.AzurirajMuzejCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+  <button *ngIf="this.isNovaMuzejCijena() === false" (click)="this.KreirajMuzejCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
+  <button *ngIf="this.isNovaMuzejCijena() === true" (click)="this.AzurirajMuzejCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
   
 </div>
+
+</nz-spin>

@@ -3,8 +3,8 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { GradInterface } from 'src/app/interface/KreirajGradInterface';
+import { DrzavaInterface } from 'src/app/interface/KreirajDrzavuInterface';
 
 @Component({
   selector: 'app-dodaj-grad',
@@ -14,13 +14,14 @@ import { GradInterface } from 'src/app/interface/KreirajGradInterface';
 export class DodajGradComponent implements OnInit {
   public id: number;
   public validateForm: FormGroup;
-  public Gradovi: Array<GradInterface> = [];
-  public Drzave: Array<any> = [];
+  public GradoviLista: Array<GradInterface> = [];
+  public DrzavaLista: Array<DrzavaInterface> = [];
+  public GradsUcitavanje: boolean = false;
+  public Uspjesno: boolean = false;
 
   public ValueStanovnistvo = 0;
-
   public ValuePostanski_broj = 0;
-
+  
   public ValueNadmorska_visina = 0;
   public formatterM = (value: number) => ` ${value} m `;
   public parserM = (value: string) => value.replace('m', '');
@@ -41,15 +42,15 @@ export class DodajGradComponent implements OnInit {
     private ruta: ActivatedRoute
   ) {
     this.initForm();
-    this.dohvatiPodatke();
   }
 
   ngOnInit(): void {
     this.setId();
+    this.dohvatiPodatke();
   }
 
   public onChange(result: Date): void {
-    this.validateForm.value.neovisnost = result;
+    this.validateForm.value.updated_at = result;
   }
 
   public isNoviGrad(): boolean {
@@ -78,8 +79,8 @@ export class DodajGradComponent implements OnInit {
   private dohvatiPodatke(): void {
     this.apiService.dohvatiGrad().subscribe(
       (response) => {
-        this.Gradovi = response.data;
-        if(this.isNoviGrad() === true) {
+        this.GradoviLista = response.data;
+        if (this.isNoviGrad() === true) {
           this.NadiGrad();
         }
       },
@@ -87,7 +88,7 @@ export class DodajGradComponent implements OnInit {
     );
 
     this.apiService.dohvatiDrzavu().subscribe(
-      (response) => (this.Drzave = response.data),
+      (response) => (this.DrzavaLista = response.data),
       (error) => console.log(error)
     );
   }
@@ -95,6 +96,7 @@ export class DodajGradComponent implements OnInit {
   public setId(): any {
     if (this.ruta.snapshot.params.id) {
       this.id = parseInt(this.ruta.snapshot.params.id);
+      this.GradsUcitavanje = true;
     }
   }
 
@@ -102,8 +104,10 @@ export class DodajGradComponent implements OnInit {
 
   // Spremi novu drzavu
   public KreirajGrad(): any {
-    for (const i in this.Gradovi) {
-      if (this.Gradovi[i].naziv_grada === this.validateForm.value.naziv_grada)
+    for (const i in this.GradoviLista) {
+      if (
+        this.GradoviLista[i].naziv_grada === this.validateForm.value.naziv_grada
+      )
         return this.message.create('error', `Ovaj grad vec postoji`);
     }
 
@@ -132,10 +136,9 @@ export class DodajGradComponent implements OnInit {
         (response) => {
           if (response) {
             console.log(this.validateForm.value);
-            this.createMessage('success');
+            this.Uspjesno = true;
             this.dohvatiPodatke();
             this.initForm();
-            this.router.navigate(['forme']);
           }
         },
         (error) => console.log(error, this.createMessage('error'))
@@ -162,10 +165,9 @@ export class DodajGradComponent implements OnInit {
         (response) => {
           if (response) {
             console.log(this.validateForm.value);
-            this.createMessage('success');
+            this.Uspjesno = true;
             this.dohvatiPodatke();
             this.initForm();
-            this.router.navigate(['forme']);
           }
         },
         (error) => console.log(error, this.createMessage('error'))
@@ -189,13 +191,16 @@ export class DodajGradComponent implements OnInit {
 
   // Pronadi sve podatke za zeljenu drzavu
   public NadiGrad(): any {
-    let model = this.Gradovi.find((grad) => grad.id === this.id);
+    let model = this.GradoviLista.find((grad) => grad.id === this.id);
     if (model) {
       this.popuniFormuIzModela(model);
+      this.GradsUcitavanje = false;
     } else {
       console.log('[ERROR] Nisam pronašao grad!!!');
     }
   }
+
+  // ========= PORUKA =========
 
   public createMessage(type: string): void {
     if (type === 'success') {
@@ -206,6 +211,10 @@ export class DodajGradComponent implements OnInit {
   }
 
   // ========= VRACANJE =========
+
+  public Forma(): any {
+    this.Uspjesno = false;
+  }
 
   public Nazad(): any {
     this.router.navigate(['forme']);
