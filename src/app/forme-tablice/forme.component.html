@@ -1,6 +1,6 @@
 <div class="container"> <!--DRZAVA-->
   <h1>Drzave</h1>
-    <nz-table #middleTable nzSize="middle" [nzData]="this.DrzaveLista " 
+    <nz-table #middleTable nzSize="middle" [nzData]="this.DrzaveLista " [nzLoading]="this.DrzaveUcitavanje"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
       <thead>
         <tr>
@@ -82,7 +82,7 @@
 
   <h1>Poznate znamenitosti</h1>
   <!--POZNATE ZNAMENITOSTI TABLICA-->
-  <nz-table #basicTable [nzData]="this.PoznateZnamenitostiLista"
+  <nz-table #basicTable [nzData]="this.PoznateZnamenitostiLista" [nzLoading]="this.PoznateZnamenitostiUcitavanje"
   style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
    
     <thead>
@@ -122,7 +122,7 @@
 
   <h2>Poznate zanemnitosti cijena</h2>
   <!--POZNATE ZNAMENITOSTI CIJENA TABLICA-->
-  <nz-table #basicTable [nzData]="this.PoznateZnamenitostiCijenaLista"
+  <nz-table #basicTable [nzData]="this.PoznateZnamenitostiCijenaLista" [nzLoading]="this.PoznateZnamenitostiCijenaUcitavanje"
   style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
     <thead>
       <tr>
@@ -154,7 +154,7 @@
 
 <div class="container"><!--MUZEJI-->
     <h1>Muzeji</h1>
-    <nz-table #basicTable [nzData]="this.MuzejiLista"
+    <nz-table #basicTable [nzData]="this.MuzejiLista"  [nzLoading]="this.MuzejiUcitavanje"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
      
       <thead>
@@ -194,7 +194,7 @@
 
     <h2>Muzeji cijena</h2>
     <!--MUZEJI CIJENA TABLICA-->
-    <nz-table #basicTable [nzData]="this.MuzejiCijenaLista"
+    <nz-table #basicTable [nzData]="this.MuzejiCijenaLista" [nzLoading]="this.MuzejiCijenaUcitavanje"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
       <thead>
         <tr>
@@ -225,7 +225,7 @@
 
 <div class="container"><!--KLUBOVI-->
     <h1>Klubovi</h1>
-      <nz-table #basicTable [nzData]="this.KluboviLista"
+      <nz-table #basicTable [nzData]="this.KluboviLista" [nzLoading]="this.KluboviUcitavanje"
       style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
        
         <thead>
@@ -266,7 +266,7 @@
       
     <h2>Klubovi cijena</h2>
     <!--KLUBOVI CIJENA TABLICA-->
-    <nz-table #basicTable [nzData]="this.KluboviCijenaLista"
+    <nz-table #basicTable [nzData]="this.KluboviCijenaLista" [nzLoading]="this.KluboviCijenaUcitavanje"
     style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
       <thead>
         <tr>
@@ -299,7 +299,7 @@
 
 <div class="container"><!--KAZALISTA-->
       <h1>Kazalista</h1>
-        <nz-table #basicTable [nzData]="this.KazalistaLista"
+        <nz-table #basicTable [nzData]="this.KazalistaLista" [nzLoading]="this.KazalistaUcitavanje"
         style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
          
           <thead>
@@ -339,7 +339,7 @@
 
         <h2>Kazalista cijena</h2>
         <!--KAZALISTA CIJENA TABLICA-->
-        <nz-table #basicTable [nzData]="this.KazalistaCijenaLista"
+        <nz-table #basicTable [nzData]="this.KazalistaCijenaLista" [nzLoading]="this.KazalistaCijenaUcitavanje"
         style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
           <thead>
             <tr>
@@ -371,7 +371,7 @@
 
 <div class="container"><!--DVORCI-->
         <h1>Dvorci</h1>
-          <nz-table #basicTable [nzData]="this.DvorciLista"
+          <nz-table #basicTable [nzData]="this.DvorciLista" [nzLoading]="this.DvorciUcitavanje"
           style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
            
             <thead>
@@ -407,7 +407,7 @@
 
           <h2>Dvorci cijena</h2>
           <!--DVORCI CIJENA TABLICA-->
-          <nz-table #basicTable [nzData]="this.DvorciCijenaLista"
+          <nz-table #basicTable [nzData]="this.DvorciCijenaLista" [nzLoading]="this.DvorciCijenaUcitavanje"
           style=" width: 80%; margin-top: 5%;margin-left: 5%; ">
             <thead>
               <tr>
