@@ -2,7 +2,7 @@
 <nz-spin
 nzTip="Loading..."
 [nzSize]="'large'"
-[nzSpinning]="this.DvorciCijenaUcitavanje"
+[nzSpinning]="this.KazalistaCijenaUcitavanje"
 >
 <nz-result
   *ngIf="this.Uspjesno === true"
@@ -77,7 +77,7 @@ nzTip="Loading..."
   
     <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
     <button  *ngIf="this.isNovoKazalisteCijena() === false" (click)="this.KreirajKazalisteCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
-    <button  *ngIf="this.isNovoKazalisteCijena() === false" (click)="this.AzurirajKazalisteCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
+    <button  *ngIf="this.isNovoKazalisteCijena() === true" (click)="this.AzurirajKazalisteCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
     
   </div>
 

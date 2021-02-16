@@ -204,7 +204,7 @@ export class FormeComponent implements OnInit {
     }
   }
 
-// Dohvati nazives
+// Dohvati nazive
 
   public getNaziv(id_naziv: any, broj): any {
     if (broj == 1) {

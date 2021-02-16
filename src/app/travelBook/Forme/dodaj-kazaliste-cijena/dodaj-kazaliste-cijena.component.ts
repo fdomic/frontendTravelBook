@@ -48,7 +48,7 @@ export class DodajKazalisteCijenaComponent implements OnInit {
     this.validateForm.value.updated_at = result;
   }
 
-  public isNoviKazalisteCijena(): boolean {
+  public isNovoKazalisteCijena(): boolean {
     return !!this.id;
   }
 
@@ -71,7 +71,7 @@ export class DodajKazalisteCijenaComponent implements OnInit {
 
         (response) => {
           this.KazalisteCijenaLista = response.data;
-          if (this.isNoviKazalisteCijena() === true) {
+          if (this.isNovoKazalisteCijena() === true) {
             this.NadiKazalisteCijena();
           }
         },
