@@ -22,12 +22,16 @@ import { PoznatuZnamenitostInterface } from 'src/app/interface/KreirajPoznatuZna
 })
 export class NavigationComponent implements OnInit {
   isCollapsed = false;
+  public lista: any[];
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  public forma: boolean = false;
+  public formaZnamenitost: boolean = false;
+  public formaMuzej: boolean = false;
+  public formaDvorci: boolean = false;
+  public formaKazalista: boolean = false;
 
   public Grad_id: number;
   public validateForm: FormGroup;
@@ -65,7 +69,7 @@ export class NavigationComponent implements OnInit {
   public DvorciGradLista: Array<DvoracInterface> = [];
 
   public DvorciCijenaLista: Array<DvoracCijenaInterface> = [];
-  public DvorciCijenaGradLista: Array<DvoracInterface> = [];
+  public DvorciCijenaGradLista: Array<DvoracCijenaInterface> = [];
 
   //Klubovi
   public KluboviUcitavanje: boolean = false;
@@ -97,11 +101,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public SakriFormu(){
-
-    return this.forma = false;
-
-  }
+  
 
   private initForm(): void {
     this.validateForm = this.fb.group({
@@ -391,28 +391,21 @@ export class NavigationComponent implements OnInit {
 
 // Puni formu
 
-  private popuniFormuIzModela(model: any): void {
-    this.validateForm.patchValue({
-      id_muzeji: model.id_muzeji,
-      id_grada: model.id_grada,
-      ime_gradevine: model.ime_gradevine,
-      arhitekt: model.arhitekt,
-      godina_izgradnje: model.godina_izgradnje,
-      opis_kraci: model.opis_kraci,
-      opis_duzi: model.opis_duzi,
-      adresa: model.adresa,
-      sluzbena_stranica: model.sluzbena_stranica,
-      slika: model.slika,
-    });
-  }
 
   public NadiZnamenitost(id: number): any {
     let model = this.PoznateZnamenitostiLista.find(
       (poznataZnamenitost) => poznataZnamenitost.id === id
     );
     if (model) {
-      this.popuniFormuIzModela(model);
-      this.forma = true;
+
+
+      this.lista = [];
+      this.lista.push(model);
+       
+      this.formaZnamenitost = true;
+      this. formaMuzej= false;
+      this. formaDvorci = false;
+      this. formaKazalista = false;
 
       //POZNATA ZNAMENITOST CIJENA
       this.PoznateZnamenitostiCijenaGradLista = [];
@@ -426,15 +419,22 @@ export class NavigationComponent implements OnInit {
         }
       }
     } else {
-      console.log('[ERROR] Nisam pronašao grad!!!');
+      console.log('[ERROR] Nisam pronašao !!!');
     }
   }
 
   public NadiMuzej(id: number): any {
     let model = this.MuzejiLista.find((muzej) => muzej.id === id);
     if (model) {
-      this.popuniFormuIzModela(model);
+  
+      
+      this.lista = [];
+      this.lista.push(model);
 
+      this.formaZnamenitost = false;
+      this. formaMuzej= true;
+      this. formaDvorci = false;
+      this. formaKazalista = false;
       //MUZEJ CIJENA
       this.MuzejiCijenaGradLista = [];
       for (const i in this.MuzejiLista) {
@@ -443,7 +443,55 @@ export class NavigationComponent implements OnInit {
         }
       }
     } else {
-      console.log('[ERROR] Nisam pronašao grad!!!');
+      console.log('[ERROR] Nisam pronašao !!!');
+    }
+  }
+
+  public NadiKazaliste(id: number): any {
+    let model = this.KazalistaLista.find((kazaliste) => kazaliste.id === id);
+    if (model) {
+      
+      this.lista = [];
+      this.lista.push(model);
+
+      this.formaZnamenitost = false;
+      this. formaMuzej= false;
+      this. formaDvorci = false;
+      this. formaKazalista = true;
+
+      //KAZALISTE CIJENA
+      this.KazalistaGradCijenaLista = [];
+      for (const i in this.MuzejiLista) {
+        if (this.KazalistaCijenaLista[i].id_kazalista === id) {
+          this.KazalistaGradCijenaLista.push(this.KazalistaCijenaLista[i]);
+        }
+      }
+    } else {
+      console.log('[ERROR] Nisam pronašao !!!');
+    }
+  }
+
+  public NadiDvorac(id: number): any {
+    let model = this.DvorciLista.find((dvorac) => dvorac.id === id);
+    if (model) {
+
+      this.lista = [];
+      this.lista.push(model);
+
+      this.formaZnamenitost = false;
+      this. formaMuzej= false;
+      this. formaDvorci = true;
+      this. formaKazalista = false;
+
+      //KAZALISTE CIJENA
+      this.DvorciCijenaGradLista = [];
+      for (const i in this.DvorciCijenaLista) {
+        if (this.DvorciCijenaLista[i].id_dvorci === id) {
+          this.DvorciCijenaGradLista.push(this.DvorciCijenaLista[i]);
+        }
+      }
+    } else {
+      console.log('[ERROR] Nisam pronašao !!!');
     }
   }
 

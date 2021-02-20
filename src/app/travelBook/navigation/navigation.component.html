@@ -49,9 +49,8 @@
         </div>
       </div>
 
-<!--TRAZILICA-->
+      <!--TRAZILICA-->
       <div id="1" class="divPageTrazilica">
-       
         <div [formGroup]="this.validateForm">
           <input
             type="text"
@@ -65,7 +64,7 @@
         </div>
       </div>
 
-<!--ZNAMENITOSTI-->
+      <!--ZNAMENITOSTI-->
       <div id="2" class="divPage" *ngIf="this.UspjesnoNadengrad === true">
         <!--ZNAMENITOSTI-->
         <div class="divH1">
@@ -73,20 +72,6 @@
         </div>
 
         <div class="mainContRot">
-          <div class="cardRot middle">
-            <div
-              class="front"
-              style="
-                background-image: url(https://thumbs.dreamstime.com/b/museum-icon-collection-trendy-modern-flat-linear-vector-white-background-thin-line-outline-illustration-130955277.jpg);
-                background-size: cover;
-              "
-            ></div>
-
-            <div class="back">
-              <div class="back-content middle"></div>
-            </div>
-          </div>
-
           <div
             *ngFor="let znamenitosti of this.ZnamenitostiZaPrikaz()"
             class="cardRot middle"
@@ -131,182 +116,130 @@
                     <i nz-icon nzType="paper-clip" nzTheme="outline"></i>
                     <a>{{ znamenitosti.sluzbena_stranica }}</a>
                   </li>
+
+                  <button style="margin-left: 125px;">
+                    <a
+                      href="navigation#2/1"
+                      (click)="this.NadiZnamenitost(znamenitosti.id)"
+                      >ISTRAŽI</a
+                    >
+                    </button>
                 </ul>
 
                 
-              <a
-              href="navigation#2/1"
-              (click)="this.NadiZnamenitost(znamenitosti.id)"
-              >ISTRAŽI</a
-            >
-              </div>
 
+              
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="formaCont" id="2/1" *ngIf="this.forma === true">
-        <form nz-form [formGroup]="this.validateForm">
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_grada"
-              >id_grada</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="id_grada" id="id_grada" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="ime_gradevine"
-              >ime_gradevine</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input
-                nz-input
-                formControlName="ime_gradevine"
-                id="ime_gradevine"
-              />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="arhitekt"
-              >arhitekt</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="arhitekt" id="arhitekt" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="godina_izgradnje"
-              >godina_izgradnje</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <nz-date-picker
-                nz-input
-                formControlName="godina_izgradnje"
-                id="godina_izgradnje"
-              ></nz-date-picker>
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_kraci"
-              >opis_kraci</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="opis_kraci" id="opis_kraci" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_duzi"
-              >opis_duzi</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="opis_duzi" id="opis_duzi" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="adresa"
-              >adresa</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="adresa" id="adresa" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sluzbena_stranica"
-              >sluzbena_stranica</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input
-                nz-input
-                formControlName="sluzbena_stranica"
-                id="sluzbena_stranica"
-              />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="slika"
-              >slika</nz-form-label
-            >
-            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-              <input nz-input formControlName="slika" id="slika" />
-            </nz-form-control>
-          </nz-form-item>
-        </form>
-
-        <nz-spin
-          nzTip="Loading..."
-          [nzSize]="'large'"
-          [nzSpinning]="this.PoznateZnamenitostiCijenaUcitavanje"
+      <div class="formaCont" id="2/1" *ngIf="this.formaZnamenitost === true">
+        <div
+          *ngFor="let znamenitosti of this.lista"
+          style="height: 100%; width: 100%"
+          [style]="
+            'background-image: url(' +
+            znamenitosti.slika +
+            '); background-size: cover;'
+          "
         >
-          <h2>Poznate zanemnitosti cijena</h2>
-          <nz-table
-            #basicTable
-            [nzData]="this.PoznateZnamenitostiCijenaGradLista"
-            style="width: 80%; margin-top: 5%; margin-left: 5%"
-          >
-            <thead>
-              <tr>
-                <th>poznate_znamenitosti</th>
-                <th>karta</th>
-                <th>opis</th>
-                <th>trajanje_karte</th>
-                <th>cijena</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let znamenitostiCijena of this.PoznateZnamenitostiCijenaGradLista
-                "
-              >
-                <td>
-                  {{
-                    this.getNaziv(znamenitostiCijena.id_poznate_znamenitosti, 3)
-                  }}
-                </td>
-                <td>{{ znamenitostiCijena.karta }}</td>
-                <td>{{ znamenitostiCijena.opis }}</td>
-                <td>{{ znamenitostiCijena.trajanje_karte }}</td>
-                <td>{{ znamenitostiCijena.cijena }}</td>
-              </tr>
-            </tbody>
-          </nz-table>
-        </nz-spin>
+          <div class="row">
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <div>
+                <ul>
+                  <li>
+                    <p>Ime: {{ znamenitosti.ime_gradevine }}</p>
+                  </li>
 
-        <a href="navigation#2" (click)="this.SakriFormu()">NAZAD</a>
+                  <li>
+                    <p>Arhitekt: {{ znamenitosti.arhitekt }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Datum izgradnje: {{ znamenitosti.godina_izgradnje }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Adresa: {{ znamenitosti.adresa }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Stranica: {{ znamenitosti.sluzbena_stranica }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Opis: {{ znamenitosti.opis_duzi }}</p>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <nz-spin
+                nzTip="Loading..."
+                [nzSize]="'large'"
+                [nzSpinning]="this.PoznateZnamenitostiCijenaUcitavanje"
+              >
+                <P>CIJENIK</P>
+                <nz-table
+                  #basicTable
+                  [nzData]="this.PoznateZnamenitostiCijenaGradLista"
+                  style="width: 80%; margin-top: 5%; margin-left: 5%"
+                >
+                  <thead>
+                    <tr>
+                      <th>poznate_znamenitosti</th>
+                      <th>karta</th>
+                      <th>opis</th>
+                      <th>trajanje_karte</th>
+                      <th>cijena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="
+                        let znamenitostiCijena of this
+                          .PoznateZnamenitostiCijenaGradLista
+                      "
+                    >
+                      <td>
+                        {{
+                          this.getNaziv(
+                            znamenitostiCijena.id_poznate_znamenitosti,
+                            3
+                          )
+                        }}
+                      </td>
+                      <td>{{ znamenitostiCijena.karta }}</td>
+                      <td>{{ znamenitostiCijena.opis }}</td>
+                      <td>{{ znamenitostiCijena.trajanje_karte }}</td>
+                      <td>{{ znamenitostiCijena.cijena }}</td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </nz-spin>
+            </div>
+          </div>
+
+          <button>
+            <a href="navigation#2" >NAZAD</a></button>
+        </div>
       </div>
 
-<!--MUZEJ-->
+      <!--MUZEJ-->
       <div id="3" class="divPage" *ngIf="this.UspjesnoNadengrad === true">
-       
         <div class="divH1">
           <h1>Muzeji</h1>
         </div>
 
         <div class="mainContRot">
-          <div class="cardRot middle">
-            <div
-              class="front"
-              style="
-                background-image: url(https://thumbs.dreamstime.com/b/museum-icon-collection-trendy-modern-flat-linear-vector-white-background-thin-line-outline-illustration-130955277.jpg);
-                background-size: cover;
-              "
-            ></div>
-
-            <div class="back">
-              <div class="back-content middle"></div>
-            </div>
-          </div>
-
           <div
             *ngFor="let Muzej of this.MuzejiZaPrikaz()"
             class="cardRot middle"
@@ -352,197 +285,108 @@
                     <a>{{ Muzej.sluzbena_stranica }}</a>
                   </li>
                 </ul>
+
                 
-              <a href="navigation#2/1" (click)="this.NadiZnamenitost(Muzej.id)"
-              >ISTRAŽI</a
-            >
+
+              <button style="margin-left: 120px; margin-top: -100px">
+                <a href="navigation#3/1" (click)="this.NadiMuzej(Muzej.id)"
+                  >ISTRAŽI</a
+                >
+              </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="formaCont" id="3/1" *ngIf="this.forma === true">
-        <form nz-form [formGroup]="this.validateForm">
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_grada"
-              >id_grada</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="id_grada" id="id_grada" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="ime_gradevine"
-              >ime_gradevine</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input
-                nz-input
-                formControlName="ime_gradevine"
-                id="ime_gradevine"
-              />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="arhitekt"
-              >arhitekt</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="arhitekt" id="arhitekt" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="godina_izgradnje"
-              >godina_izgradnje</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <nz-date-picker
-                nz-input
-                formControlName="godina_izgradnje"
-                id="godina_izgradnje"
-              ></nz-date-picker>
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_kraci"
-              >opis_kraci</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="opis_kraci" id="opis_kraci" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_duzi"
-              >opis_duzi</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="opis_duzi" id="opis_duzi" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="adresa"
-              >adresa</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="adresa" id="adresa" />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sluzbena_stranica"
-              >sluzbena_stranica</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input
-                nz-input
-                formControlName="sluzbena_stranica"
-                id="sluzbena_stranica"
-              />
-            </nz-form-control>
-          </nz-form-item>
-
-          <nz-form-item>
-            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="slika"
-              >slika</nz-form-label
-            >
-            <nz-form-control
-              [nzSm]="14"
-              [nzXs]="24"
-              nzErrorTip="Obavezan unos"
-            >
-              <input nz-input formControlName="slika" id="slika" />
-            </nz-form-control>
-          </nz-form-item>
-        </form>
-
-        <nz-spin
-          nzTip="Loading..."
-          [nzSize]="'large'"
-          [nzSpinning]="this.MuzejiUcitavanje"
+      <div class="formaCont" id="3/1" *ngIf="this.formaMuzej === true">
+        <div
+          *ngFor="let muzej of this.lista"
+          style="height: 100%; width: 100%"
+          [style]="
+            'background-image: url(' +
+            muzej.slika +
+            '); background-size: cover;'
+          "
         >
-          <h2>Poznate zanemnitosti cijena</h2>
-          <nz-table
-            #basicTable
-            [nzData]="this.MuzejiCijenaGradLista"
-            style="width: 80%; margin-top: 5%; margin-left: 5%"
-          >
-            <thead>
-              <tr>
-                <th>muzej</th>
-                <th>karta</th>
-                <th>opis</th>
-                <th>trajanje_karte</th>
-                <th>cijena</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let muzejCijena of this
-                    .MuzejiCijenaGradLista
-                "
-              >
-                <td>
-                  {{
-                    this.getNaziv(
-                      muzejCijena.id_muzeji,
-                      3
-                    )
-                  }}
-                </td>
-                <td>{{ muzejCijena.karta }}</td>
-                <td>{{ muzejCijena.opis }}</td>
-                <td>{{ muzejCijena.trajanje_karte }}</td>
-                <td>{{ muzejCijena.cijena }}</td>
-              </tr>
-            </tbody>
-          </nz-table>
-        </nz-spin>
+          <div class="row">
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <div>
+                <ul>
+                  <li>
+                    <p>Ime: {{ muzej.ime_gradevine }}</p>
+                  </li>
 
-        <a href="navigation#3">NAZAD</a>
+                  <li>
+                    <p>Arhitekt: {{ muzej.arhitekt }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Datum izgradnje: {{ muzej.godina_izgradnje }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Adresa: {{ muzej.adresa }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Stranica: {{ muzej.sluzbena_stranica }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Opis: {{ muzej.opis_duzi }}</p>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <nz-spin
+                nzTip="Loading..."
+                [nzSize]="'large'"
+                [nzSpinning]="this.MuzejiCijenaUcitavanje"
+              >
+                <P>CIJENIK</P>
+                <nz-table
+                  #basicTable
+                  [nzData]="this.MuzejiCijenaGradLista"
+                  style="width: 80%; margin-top: 5%; margin-left: 5%"
+                >
+                  <thead>
+                    <tr>
+                      <th>poznate_znamenitosti</th>
+                      <th>karta</th>
+                      <th>opis</th>
+                      <th>trajanje_karte</th>
+                      <th>cijena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let muzejCijena of this.MuzejiCijenaGradLista">
+                      <td>
+                        {{ this.getNaziv(muzejCijena.id_muzeji, 3) }}
+                      </td>
+                      <td>{{ muzejCijena.karta }}</td>
+                      <td>{{ muzejCijena.opis }}</td>
+                      <td>{{ muzejCijena.trajanje_karte }}</td>
+                      <td>{{ muzejCijena.cijena }}</td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </nz-spin>
+            </div>
+          </div>
+
+          <a href="navigation#3">NAZAD</a>
+        </div>
       </div>
 
-    
-<!--KAZALISTA-->
+      <!--KAZALISTA-->
       <div id="4" class="divPage" *ngIf="this.UspjesnoNadengrad === true">
         <!--KAZALISTA-->
         <div class="divH1">
@@ -550,20 +394,6 @@
         </div>
 
         <div class="mainContRot">
-          <div class="cardRot middle">
-            <div
-              class="front"
-              style="
-                background-image: url(https://thumbs.dreamstime.com/b/museum-icon-collection-trendy-modern-flat-linear-vector-white-background-thin-line-outline-illustration-130955277.jpg);
-                background-size: cover;
-              "
-            ></div>
-
-            <div class="back">
-              <div class="back-content middle"></div>
-            </div>
-          </div>
-
           <div
             *ngFor="let Kazaliste of this.KazalistaZaPrikaz()"
             class="cardRot middle"
@@ -611,12 +441,108 @@
                 </ul>
               </div>
 
-              <button>Istraži</button>
+              
+
+              <button style="margin-left: 120px; margin-top: -100px">
+              <a
+                href="navigation#4/1"
+                (click)="this.NadiKazaliste(Kazaliste.id)"
+                >ISTRAŽI</a
+              >
+              </button>
             </div>
           </div>
         </div>
       </div>
 
+      <div class="formaCont" id="4/1" *ngIf="this.formaKazalista === true">
+        <div
+          *ngFor="let kazalista of this.lista"
+          style="height: 100%; width: 100%"
+          [style]="
+            'background-image: url(' +
+            kazalista.slika +
+            '); background-size: cover;'
+          "
+        >
+          <div class="row">
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <div>
+                <ul>
+                  <li>
+                    <p>Ime: {{ kazalista.ime_gradevine }}</p>
+                  </li>
+
+                  <li>
+                    <p>Arhitekt: {{ kazalista.arhitekt }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Datum izgradnje: {{ kazalista.godina_izgradnje }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Adresa: {{ kazalista.adresa }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Stranica: {{ kazalista.sluzbena_stranica }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Opis: {{ kazalista.opis_duzi }}</p>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <nz-spin
+                nzTip="Loading..."
+                [nzSize]="'large'"
+                [nzSpinning]="this.KazalistaCijenaUcitavanje"
+              >
+                <P>CIJENIK</P>
+                <nz-table
+                  #basicTable
+                  [nzData]="this.KazalistaUcitavanje"
+                  style="width: 80%; margin-top: 5%; margin-left: 5%"
+                >
+                  <thead>
+                    <tr>
+                      <th>poznate_znamenitosti</th>
+                      <th>karta</th>
+                      <th>opis</th>
+                      <th>trajanje_karte</th>
+                      <th>cijena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let kazalista of this.KazalistaGradCijenaLista">
+                      <td>
+                        {{ this.getNaziv(kazalista.id_kazalista, 3) }}
+                      </td>
+                      <td>{{ kazalista.karta }}</td>
+                      <td>{{ kazalista.opis }}</td>
+                      <td>{{ kazalista.trajanje_karte }}</td>
+                      <td>{{ kazalista.cijena }}</td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </nz-spin>
+            </div>
+          </div>
+
+          <a href="navigation#4">NAZAD</a>
+        </div>
+      </div>
+
+      <!--DVORCI-->
       <div id="5" class="divPage" *ngIf="this.UspjesnoNadengrad === true">
         <!--DVORCI-->
         <div class="divH1">
@@ -624,20 +550,6 @@
         </div>
 
         <div class="mainContRot">
-          <div class="cardRot middle">
-            <div
-              class="front"
-              style="
-                background-image: url(https://thumbs.dreamstime.com/b/museum-icon-collection-trendy-modern-flat-linear-vector-white-background-thin-line-outline-illustration-130955277.jpg);
-                background-size: cover;
-              "
-            ></div>
-
-            <div class="back">
-              <div class="back-content middle"></div>
-            </div>
-          </div>
-
           <div
             *ngFor="let Dvorci of this.DvorciZaPrikaz()"
             class="cardRot middle"
@@ -685,9 +597,100 @@
                 </ul>
               </div>
 
-              <button>Istraži</button>
+              <button style="margin-left: 120px; margin-top: -100px">
+                <a href="navigation#5/1" (click)="this.NadiDvorac(Dvorci.id)"
+                  >ISTRAŽI</a
+                >
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="formaCont" id="5/1" *ngIf="this.formaDvorci === true">
+        <div
+          *ngFor="let dvorci of this.lista"
+          style="height: 100%; width: 100%"
+          [style]="
+            'background-image: url(' +
+            dvorci.slika +
+            '); background-size: cover;'
+          "
+        >
+          <div class="row">
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <div>
+                <ul>
+                  <li>
+                    <p>Ime: {{ dvorci.ime_gradevine }}</p>
+                  </li>
+
+                  <li>
+                    <p>Arhitekt: {{ dvorci.arhitekt }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Datum izgradnje: {{ dvorci.godina_izgradnje }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Adresa: {{ dvorci.adresa }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Stranica: {{ dvorci.sluzbena_stranica }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Opis: {{ dvorci.opis_duzi }}</p>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <nz-spin
+                nzTip="Loading..."
+                [nzSize]="'large'"
+                [nzSpinning]="this.DvorciCijenaUcitavanje"
+              >
+                <P>CIJENIK</P>
+                <nz-table
+                  #basicTable
+                  [nzData]="this.DvorciCijenaGradLista"
+                  style="width: 80%; margin-top: 5%; margin-left: 5%"
+                >
+                  <thead>
+                    <tr>
+                      <th>dvorci</th>
+                      <th>karta</th>
+                      <th>opis</th>
+                      <th>trajanje_karte</th>
+                      <th>cijena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dvorci of this.DvorciCijenaGradLista">
+                      <td>
+                        {{ this.getNaziv(dvorci.id_dvorci, 3) }}
+                      </td>
+                      <td>{{ dvorci.karta }}</td>
+                      <td>{{ dvorci.opis }}</td>
+                      <td>{{ dvorci.trajanje_karte }}</td>
+                      <td>{{ dvorci.cijena }}</td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </nz-spin>
+            </div>
+          </div>
+
+          <a href="navigation#5">NAZAD</a>
         </div>
       </div>
 
@@ -696,19 +699,5 @@
         <h1>O nama</h1>
       </div>
     </div>
-
-    <section id="slider">
-      <input type="radio" name="slider" id="s1" checked />
-      <input type="radio" name="slider" id="s2" />
-      <input type="radio" name="slider" id="s3" />
-      <input type="radio" name="slider" id="s4" />
-      <input type="radio" name="slider" id="s5" />
-
-      <label for="s1" id="slide1">1</label>
-      <label for="s2" id="slide2">2</label>
-      <label for="s3" id="slide3">3</label>
-      <label for="s4" id="slide4">4</label>
-      <label for="s5" id="slide5">5</label>
-    </section>
   </div>
 </nz-layout>
