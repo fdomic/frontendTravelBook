@@ -1,4 +1,16 @@
-<nz-spin
+
+
+
+<div class="wrapper">
+  <div class="title">
+    <h1>Dodja grad</h1>
+  </div>
+  <div class="contact-form">
+    <div class="input-fields">
+     
+
+
+      <nz-spin
   nzTip="Loading..."
   [nzSize]="'large'"
   [nzSpinning]="this.GradsUcitavanje"
@@ -17,166 +29,237 @@
 
   <div class="container" *ngIf="this.Uspjesno === false">
     <form nz-form [formGroup]="this.validateForm">
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_drzave"
-          >id_drzave</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="id_drzave" id="id_drzave" />
-        </nz-form-control>
-      </nz-form-item>
+    
+ 
+            <div class="row">
+              <div class="col">
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="naziv_grada"
-          >naziv_grada</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input style="text-transform: uppercase;" formControlName="naziv_grada" id="naziv_grada" />
-        </nz-form-control>
-      </nz-form-item>
+                
+                <nz-form-item>
+                  <label style="width: 20%;">Drzava</label>
+                  <select 
+                  
+                  
+                  formControlName="id_drzave" title="Drzava">
+                  
+                    <option
+                      
+                      style="color: black;"
+                    
+                      *ngFor="let drzava of this.DrzavaLista"
+                    
+                      [value]="drzava.id"
+                      [label]="drzava.naziv_drzave"
+                    >
+                    </option>
+                  </select>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  
+                  
+                  <label >Naziv grada:</label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <input
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gradonacelnik"
-          >gradonacelnik</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="gradonacelnik" id="gradonacelnik" />
-        </nz-form-control>
-      </nz-form-item>
+                    
+                    
+                    class="input"
+                      nz-input
+                      formControlName="naziv_grada"
+                      id="naziv_grada"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  <label>Gradonacelnik: </label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <input
+                    
+                    
+                    class="input"
+                     nz-input formControlName="gradonacelnik" id="gradonacelnik" />
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  <label  nzFor="nadmorska_visina"
+                    >Visina</label
+                  >
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <nz-input-number
+                      [(ngModel)]="ValueNadmorska_visina"
+                      [nzMin]="0"
+                      [nzMax]="10000"
+                      [nzStep]="0.1"
+                      [nzFormatter]="formatterM"
+                      [nzParser]="parserM"
+                      formControlName="nadmorska_visina"
+                      id="nadmorska_visina"
+                    ></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  <label  nzFor="povrsina"
+                    >Povrsina</label
+                  >
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <nz-input-number
+                      [(ngModel)]="ValuePovrsina"
+                      [nzMin]="0"
+                      [nzMax]="10000"
+                      [nzStep]="0.1"
+                      [nzFormatter]="formatterKM"
+                      [nzParser]="parserKM"
+                      formControlName="povrsina"
+                      id="povrsina"
+                    ></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+          
+                
+          
+               
+              </div>
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nadmorska_visina"
-          >nadmorska_visina</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValueNadmorska_visina"
-            [nzMin]="0"
-            [nzMax]="10000"
-            [nzStep]="0.1"
-            [nzFormatter]="formatterM"
-            [nzParser]="parserM"
-            formControlName="nadmorska_visina"
-            id="nadmorska_visina"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
+              <div class="col">
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="povrsina"
-          >povrsina</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValuePovrsina"
-            [nzMin]="0"
-            [nzMax]="10000"
-            [nzStep]="0.1"
-            [nzFormatter]="formatterKM"
-            [nzParser]="parserKM"
-            formControlName="povrsina"
-            id="povrsina"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="stanovnistvo"
-          >stanovnistvo</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValueStanovnistvo"
-            [nzMin]="0"
-            [nzMax]="10000"
-            [nzStep]="1"
-            formControlName="stanovnistvo"
-            id="stanovnistvo"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
+                <nz-form-item>
+                  <label nzFor="stanovnistvo"
+                    >Stanovnistvo</label
+                  >
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <nz-input-number
+                      [(ngModel)]="ValueStanovnistvo"
+                      [nzMin]="0"
+                      [nzMax]="10000"
+                      [nzStep]="1"
+                      formControlName="stanovnistvo"
+                      id="stanovnistvo"
+                    ></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  <label nzFor="postanski_broj"
+                    >Postanski broj</label
+                  >
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <nz-input-number
+                      [(ngModel)]="ValuePostanski_broj"
+                      [nzMin]="0"
+                      [nzMax]="10000"
+                      [nzStep]="1"
+                      formControlName="postanski_broj"
+                      id="postanski_broj"
+                    ></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  <label  nzFor="pozivni_broj"
+                    >Pozivni broj</label
+                  >
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <nz-input-number
+                      [(ngModel)]="ValuePozivnoBr"
+                      [nzMin]="0"
+                      [nzMax]="10000"
+                      [nzStep]="1"
+                      [nzFormatter]="formatterPlus"
+                      [nzParser]="parserPlus"
+                      formControlName="pozivni_broj"
+                      id="pozivni_broj"
+                    ></nz-input-number>
+                  </nz-form-control>
+                </nz-form-item>
+          
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postanski_broj"
-          >postanski_broj</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValuePostanski_broj"
-            [nzMin]="0"
-            [nzMax]="10000"
-            [nzStep]="1"
-            formControlName="postanski_broj"
-            id="postanski_broj"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
+                
+                <nz-form-item>
+                  
+                  
+                  <label >Slika:</label>
+                  <nz-form-control  [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <input 
+                    
+                    class="input"
+                    nz-input formControlName="slika" id="slika" />
+                  </nz-form-control>
+                </nz-form-item>
+          
+                <nz-form-item>
+                  
+                  <label >Sluzbena stranica:</label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                    <input
+                    
+                    
+                    class="input"
+                      nz-input
+                      formControlName="sluzbena_stranica"
+                      id="sluzbena_stranica"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="pozivni_broj"
-          >pozivni_broj</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValuePozivnoBr"
-            [nzMin]="0"
-            [nzMax]="10000"
-            [nzStep]="1"
-            [nzFormatter]="formatterPlus"
-            [nzParser]="parserPlus"
-            formControlName="pozivni_broj"
-            id="pozivni_broj"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>
+               
+              </div>
+            </div>
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="slika"
-          >slika</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="slika" id="slika" />
-        </nz-form-control>
-      </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sluzbena_stranica"
-          >sluzbena_stranica</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input
-            nz-input
-            formControlName="sluzbena_stranica"
-            id="sluzbena_stranica"
-          />
-        </nz-form-control>
-      </nz-form-item>
+          </form>
+        </div>
 
-      <button
+        <button
         (click)="this.Nazad()"
         nz-button
-        class="login-form-button login-form-margin"
-        style="background-color: blue"
+        style="background-color: red"
       >
-        Nazad
+        <i
+          nz-icon
+          nzType="arrow-left"
+          style="color: black"
+          nzTheme="outline"
+        ></i>
       </button>
       <button
         *ngIf="this.isNoviGrad() === false"
-        (click)="this.KreirajGrad()"
+        (click)="this.AzurirajGrad()"
         nz-button
-        class="login-form-button login-form-margin"
+        style="background-color: chartreuse"
       >
-        Spremi
+        <i
+          nz-icon
+          nzType="plus"
+          nzTheme="outline"
+          style="color: black"
+        ></i>
       </button>
       <button
         *ngIf="this.isNoviGrad() === true"
         (click)="this.AzurirajGrad()"
         nz-button
-        class="login-form-button login-form-margin"
-        style="background-color: blueviolet"
+        style="background-color: yellow"
       >
-        Azuriraj
+        <i
+          nz-icon
+          nzType="edit"
+          style="color: black"
+          nzTheme="outline"
+        ></i>
       </button>
-    </form>
+
+      </nz-spin>
+      
+
+           
+       
+        </div>
+    
+    </div>
   </div>
-</nz-spin>
+

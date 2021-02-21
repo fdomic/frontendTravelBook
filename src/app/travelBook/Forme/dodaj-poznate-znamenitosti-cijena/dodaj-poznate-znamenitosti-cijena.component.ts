@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from 'src/app/api.services';
 import { PoznatuZnamenitostCijenaInterface } from 'src/app/interface/KreirajPoznatuZnamenitostCijenaInterface';
+import { PoznatuZnamenitostInterface } from 'src/app/interface/KreirajPoznatuZnamenitostInterface';
 
 @Component({
   selector: 'app-dodaj-poznate-znamenitosti-cijena',
@@ -13,6 +14,7 @@ import { PoznatuZnamenitostCijenaInterface } from 'src/app/interface/KreirajPozn
 export class DodajPoznateZnamenitostiCijenaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  public PoznataZnamenitostLista : Array<PoznatuZnamenitostInterface>
   public PotnateZnamenitostiCijenaLista: Array<PoznatuZnamenitostCijenaInterface> = [];
 
   public PoznateZnamenitostiCijenaUcitavanje: boolean = false;
@@ -60,6 +62,16 @@ export class DodajPoznateZnamenitostiCijenaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+
+    this.apiService.dohvatiPoznatuZnamenitost().subscribe(
+      (response) => {
+        this.PoznataZnamenitostLista = response.data;
+        
+      },
+      (error) => console.log(error)
+    );
+
     this.apiService.dohvatiPoznatuZnamenitostCijena().subscribe(
       (response) => {
         this.PotnateZnamenitostiCijenaLista = response.data;

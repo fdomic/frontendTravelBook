@@ -70,7 +70,7 @@ export class FormeComponent implements OnInit {
           this.DrzaveLista = response.data;
           this.DrzaveUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error);this.DrzaveUcitavanje = false; }
       );
     }
     if (podatak == 2 || ucitajSve === true) {
@@ -81,7 +81,7 @@ export class FormeComponent implements OnInit {
           this.GradoviLista = response.data;
           this.GradoviUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) =>{ console.log(error); this.GradoviUcitavanje = false; }
       );
     }
     //-
@@ -93,7 +93,8 @@ export class FormeComponent implements OnInit {
           this.PoznateZnamenitostiLista = response.data;
           this.PoznateZnamenitostiUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+          this.PoznateZnamenitostiUcitavanje = false;}
       );
     }
     if (podatak == 31 || ucitajSve === true) {
@@ -104,7 +105,8 @@ export class FormeComponent implements OnInit {
           this.PoznateZnamenitostiCijenaLista = response.data;
           this.PoznateZnamenitostiCijenaUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+          this.PoznateZnamenitostiCijenaUcitavanje = false;}
       );
     }
     //-
@@ -116,7 +118,8 @@ export class FormeComponent implements OnInit {
           this.MuzejiLista = response.data;
           this.MuzejiUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+          this.MuzejiUcitavanje = false;}
       );
     }
     if (podatak == 41 || ucitajSve === true) {
@@ -127,12 +130,11 @@ export class FormeComponent implements OnInit {
           this.MuzejiCijenaLista = response.data;
           this.MuzejiCijenaUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+          this.MuzejiCijenaUcitavanje = false;}
       );
     }
-    if (podatak == 42 || ucitajSve === true) {
-    }
-    //-
+    
     if (podatak == 5 || ucitajSve === true) {
       //Klubovi
       this.KluboviUcitavanje = true;
@@ -141,7 +143,9 @@ export class FormeComponent implements OnInit {
           this.KluboviLista = response.data;
           this.KluboviUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error);
+        
+          this.KluboviUcitavanje = false; }
       );
     }
     if (podatak == 51 || ucitajSve === true) {
@@ -152,7 +156,10 @@ export class FormeComponent implements OnInit {
           this.KluboviCijenaLista = response.data;
           this.KluboviCijenaUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+        
+          this.KluboviCijenaUcitavanje = false;
+        }
       );
     }
     //-
@@ -164,7 +171,9 @@ export class FormeComponent implements OnInit {
           this.KazalistaLista = response.data;
           this.KazalistaUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+        
+          this.KazalistaUcitavanje = false;}
       );
     }
     if (podatak == 61 || ucitajSve === true) {
@@ -176,7 +185,9 @@ export class FormeComponent implements OnInit {
           this.KazalistaCijenaUcitavanje = false;
         },
 
-        (error) => console.log(error)
+        (error) => { console.log(error);
+        
+          this.KazalistaCijenaUcitavanje = false; }
       );
     }
     //
@@ -188,7 +199,8 @@ export class FormeComponent implements OnInit {
           this.DvorciLista = response.data;
           this.DvorciUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error);
+          this.DvorciUcitavanje = false; }
       );
     }
     if (podatak == 71 || ucitajSve === true) {
@@ -199,7 +211,8 @@ export class FormeComponent implements OnInit {
           this.DvorciCijenaLista = response.data;
           this.DvorciCijenaUcitavanje = false;
         },
-        (error) => console.log(error)
+        (error) => { console.log(error); 
+          this.DvorciCijenaUcitavanje = false;}
       );
     }
   }

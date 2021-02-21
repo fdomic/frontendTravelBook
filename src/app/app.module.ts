@@ -20,6 +20,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { ApiService } from './api.services';
 import { AppRoutingModule } from './app-routing.module';
@@ -82,7 +83,8 @@ registerLocaleData(en);
     NzInputNumberModule,
     NzListModule,
     NzSpinModule,
-    NzResultModule
+    NzResultModule,
+    NzSelectModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

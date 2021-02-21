@@ -19,6 +19,7 @@ export class DodajGradComponent implements OnInit {
   public GradsUcitavanje: boolean = false;
   public Uspjesno: boolean = false;
 
+
   public ValueStanovnistvo = 0;
   public ValuePostanski_broj = 0;
   
@@ -47,6 +48,7 @@ export class DodajGradComponent implements OnInit {
   ngOnInit(): void {
     this.setId();
     this.dohvatiPodatke();
+
   }
 
   public onChange(result: Date): void {
@@ -61,7 +63,7 @@ export class DodajGradComponent implements OnInit {
 
   private initForm(): void {
     this.validateForm = this.fb.group({
-      id_drzave: ['', [Validators.required]],
+      id_drzave: [''],
       naziv_grada: ['', [Validators.required]],
       gradonacelnik: ['', [Validators.required]],
       povrsina: ['', [Validators.required]],
@@ -101,6 +103,8 @@ export class DodajGradComponent implements OnInit {
   }
 
   // ========= HTML METODE =========
+
+  
 
   // Spremi novu drzavu
   public KreirajGrad(): any {

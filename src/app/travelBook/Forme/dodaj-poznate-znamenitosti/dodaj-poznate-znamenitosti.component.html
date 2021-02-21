@@ -20,12 +20,20 @@ nzTip="Loading..."
 <div class="container"  *ngIf="this.Uspjesno === false">
 <form nz-form [formGroup]="this.validateForm" >
     
+  
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_grada">id_grada</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="id_grada" id="id_grada" />
-        </nz-form-control>
-    </nz-form-item>    
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="naziv grada"
+        >NazivGrada</nz-form-label
+      >
+      <nz-select formControlName="id_grada">
+        <nz-option
+          *ngFor="let grad of this.GradLista"
+          [nzValue]="grad.id"
+          [nzLabel]="grad.naziv_grada"
+        >
+        </nz-option>
+      </nz-select>
+    </nz-form-item>
 
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="ime_gradevine">ime_gradevine</nz-form-label>

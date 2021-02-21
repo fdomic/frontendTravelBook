@@ -20,12 +20,24 @@ nzTip="Loading..."
 <div class="container" >
   <form nz-form [formGroup]="this.validateForm" *ngIf="this.Uspjesno === false">
     
+
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_poznate_znamenitosti">id_poznate_znamenitosti</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-        <input nz-input formControlName="id_poznate_znamenitosti" id="id_poznate_znamenitosti" />
-      </nz-form-control>
-    </nz-form-item>  
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="naziv_grada"
+        >Poznata znamenitost</nz-form-label
+      >
+      <nz-select formControlName="id_poznate_znamenitosti">
+        <nz-option
+          *ngFor="let znamenitost of this.PoznataZnamenitostLista"
+          [nzValue]="znamenitost.id"
+          [nzLabel]="znamenitost.ime_gradevine"
+        >
+        </nz-option>
+      </nz-select>
+    </nz-form-item>
+
+
+
       
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="karta">karta</nz-form-label>

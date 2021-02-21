@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/api.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { PoznatuZnamenitostInterface } from 'src/app/interface/KreirajPoznatuZnamenitostInterface';
+import { GradInterface } from 'src/app/interface/KreirajGradInterface';
 
 @Component({
   selector: 'app-dodaj-poznate-znamenitosti',
@@ -14,6 +15,9 @@ import { PoznatuZnamenitostInterface } from 'src/app/interface/KreirajPoznatuZna
 export class DodajPoznateZnamenitostiComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public GradLista: Array<GradInterface> = [];
+
   public PoznateZnamenitostiLista: Array<PoznatuZnamenitostInterface> = [];
 
   public PoznateZnamenitostiUcitavanje: boolean = false;
@@ -44,7 +48,7 @@ export class DodajPoznateZnamenitostiComponent implements OnInit {
 
   private initForm(): void {
     this.validateForm = this.fb.group({
-      id_grada: ['', [Validators.required]],
+      id_grada: [''],
       ime_gradevine: ['', [Validators.required]],
       arhitekt: ['', [Validators.required]],
       godina_izgradnje: ['', [Validators.required]],
@@ -57,6 +61,16 @@ export class DodajPoznateZnamenitostiComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+
+    this.apiService.dohvatiGrad().subscribe(
+      (response) => {
+        this.GradLista = response.data;
+      },
+
+      (error) => console.log(error)
+    );
+
     this.apiService.dohvatiPoznatuZnamenitost().subscribe(
       (response) => {
         this.PoznateZnamenitostiLista = response.data;
