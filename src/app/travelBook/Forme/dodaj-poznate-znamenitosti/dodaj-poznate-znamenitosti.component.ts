@@ -52,13 +52,15 @@ export class DodajPoznateZnamenitostiComponent implements OnInit {
       ime_gradevine: ['', [Validators.required]],
       arhitekt: ['', [Validators.required]],
       godina_izgradnje: ['', [Validators.required]],
-      opis_kraci: ['', [Validators.required]],
-      opis_duzi: ['', [Validators.required]],
+      opis_kraci: ['', [Validators.required],[Validators.maxLength(100)]],
+      opis_duzi: ['', [Validators.required],[Validators.maxLength(1000)]],
       adresa: ['', [Validators.required]],
       sluzbena_stranica: ['', [Validators.required]],
       slika: ['', [Validators.required]],
     });
   }
+
+  
 
   private dohvatiPodatke(): void {
 

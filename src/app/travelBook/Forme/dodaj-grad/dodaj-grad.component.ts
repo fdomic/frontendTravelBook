@@ -63,7 +63,7 @@ export class DodajGradComponent implements OnInit {
 
   private initForm(): void {
     this.validateForm = this.fb.group({
-      id_drzave: [''],
+      id_drzave: ['',[Validators.required]],
       naziv_grada: ['', [Validators.required]],
       gradonacelnik: ['', [Validators.required]],
       povrsina: ['', [Validators.required]],

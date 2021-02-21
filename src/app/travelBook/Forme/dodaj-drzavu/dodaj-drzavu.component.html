@@ -1,6 +1,18 @@
-<div class="wrapper">
+<nz-result
+  *ngIf="this.Uspjesno === true"
+  nzStatus="success"
+  nzTitle="Uspjesno je spremljeno !"
+  nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
+>
+  <div nz-result-extra>
+    <button nz-button (click)="this.Forma()">Forma</button>
+    <button nz-button (click)="this.Nazad()">Nazad</button>
+  </div>
+</nz-result>
+
+<div class="wrapper" *ngIf="this.Uspjesno === false">
   <div class="title">
-    <h1>Dodja drzavu</h1>
+    <h1>DRZAVA</h1>
   </div>
   <div class="contact-form">
     <div class="input-fields">
@@ -9,19 +21,7 @@
         [nzSize]="'large'"
         [nzSpinning]="this.DrzaveUcitavanje"
       >
-        <nz-result
-          *ngIf="this.Uspjesno === true"
-          nzStatus="success"
-          nzTitle="Uspjesno je spremljeno !"
-          nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
-        >
-          <div nz-result-extra>
-            <button nz-button (click)="this.Forma()">Forma</button>
-            <button nz-button (click)="this.Nazad()">Nazad</button>
-          </div>
-        </nz-result>
-
-        <div class="container" *ngIf="this.Uspjesno === false">
+        <div class="container">
           <form nz-form [formGroup]="this.validateForm">
             <div class="row">
               <div class="col">
@@ -114,7 +114,6 @@
                   >
                     <nz-date-picker
                       class="input"
-                      style="text-decoration: red"
                       nz-input
                       formControlName="neovisnost"
                       id="neovisnost"

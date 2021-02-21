@@ -1,136 +1,204 @@
-<nz-spin
-  nzTip="Loading..."
-  [nzSize]="'large'"
-  [nzSpinning]="this.MuzejUcitavanje"
+<nz-result
+  *ngIf="this.Uspjesno === true"
+  style="background-color: rgba(255, 255, 255, 0.6)"
+  nzStatus="success"
+  nzTitle="Uspjesno je spremljeno !"
+  nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
 >
-  <nz-result
-    *ngIf="this.Uspjesno === true"
-    nzStatus="success"
-    nzTitle="Uspjesno je spremljeno !"
-    nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
-  >
-    <div nz-result-extra>
-      <button nz-button (click)="this.Forma()">Forma</button>
-      <button nz-button (click)="this.Nazad()">Nazad</button>
-    </div>
-  </nz-result>
-
-  <div class="container" *ngIf="this.Uspjesno === false">
-    <form nz-form [formGroup]="this.validateForm">
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_grada"
-          >id_grada</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="id_grada" id="id_grada" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="ime_gradevine"
-          >ime_gradevine</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="ime_gradevine" id="ime_gradevine" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="arhitekt"
-          >arhitekt</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="arhitekt" id="arhitekt" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="godina_izgradnje"
-          >godina_izgradnje</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-date-picker
-            nz-input
-            formControlName="godina_izgradnje"
-            id="godina_izgradnje"
-          ></nz-date-picker>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_kraci"
-          >opis_kraci</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="opis_kraci" id="opis_kraci" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis_duzi"
-          >opis_duzi</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="opis_duzi" id="opis_duzi" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="adresa"
-          >adresa</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="adresa" id="adresa" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sluzbena_stranica"
-          >sluzbena_stranica</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input
-            nz-input
-            formControlName="sluzbena_stranica"
-            id="sluzbena_stranica"
-          />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="slika"
-          >slika</nz-form-label
-        >
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="slika" id="slika" />
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-
-    <button
-      (click)="this.Nazad()"
-      nz-button
-      class="login-form-button login-form-margin"
-      style="background-color: blue"
-    >
-      Nazad
-    </button>
-    <button
-      *ngIf="this.isNovaMuzej() === false"
-      (click)="this.KreirajMuzej()"
-      nz-button
-      class="login-form-button login-form-margin"
-    >
-      Spremi
-    </button>
-    <button
-      *ngIf="this.isNovaMuzej() === true"
-      (click)="this.AzurirajMuzej()"
-      nz-button
-      class="login-form-button login-form-margin"
-      style="background-color: blueviolet"
-    >
-      Azuriraj
-    </button>
+  <div nz-result-extra>
+    <button nz-button (click)="this.Forma()">Forma</button>
+    <button nz-button (click)="this.Nazad()">Nazad</button>
   </div>
-</nz-spin>
+</nz-result>
+
+<div class="wrapper" *ngIf="this.Uspjesno === false">
+  <div class="title">
+    <h1>Poznata znamenitost</h1>
+  </div>
+  <div class="contact-form">
+    <div class="input-fields">
+      <nz-spin
+        nzTip="Loading..."
+        [nzSize]="'large'"
+        [nzSpinning]="this.MuzejUcitavanje"
+      >
+        <div class="container">
+          <form nz-form [formGroup]="this.validateForm">
+            <div class="row">
+              <div class="col">
+                <nz-form-item>
+                  <label nzFor="naziv grada">Naziv grada:</label>
+                  <select formControlName="id_grada">
+                    <option
+                      *ngFor="let grad of this.GradLista"
+                      [value]="grad.id"
+                      [label]="grad.naziv_grada"
+                    ></option>
+                  </select>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label>Ime gradevine: </label>
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Obavezan unos"
+                  >
+                    <input
+                      class="input"
+                      nz-input
+                      formControlName="ime_gradevine"
+                      id="ime_gradevine"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label>Arhitekt: </label>
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Obavezan unos"
+                  >
+                    <input
+                      class="input"
+                      nz-input
+                      formControlName="arhitekt"
+                      id="arhitekt"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label>Adresa: </label>
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Obavezan unos"
+                  >
+                    <input
+                      class="input"
+                      nz-input
+                      formControlName="adresa"
+                      id="adresa"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label>Slika: </label>
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Obavezan unos"
+                  >
+                    <input
+                      class="input"
+                      nz-input
+                      formControlName="slika"
+                      id="slika"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label>Godina izgradnje: </label>
+
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    nzErrorTip="Obavezan unos"
+                  >
+                    <nz-date-picker
+                      class="input"
+                      nz-input
+                      formControlName="godina_izgradnje"
+                      id="godina_izgradnje"
+                    ></nz-date-picker>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div class="col">
+                <nz-form-item>
+                  <label nzFor="sluzbena_stranica">Sluzbena stranica:</label>
+                  <nz-textarea-count>
+                    <textarea
+                      nzSize="large"
+                      formControlName="sluzbena_stranica"
+                      id="sluzbena_stranica"
+                      nz-input
+                    ></textarea>
+                  </nz-textarea-count>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label nzFor="opis_kraci">Opis kraci:</label>
+                  <nz-textarea-count [nzMaxCharacterCount]="100">
+                    <textarea
+                      nzSize="large"
+                      formControlName="opis_kraci"
+                      id="opis_kraci"
+                      nz-input
+                    ></textarea>
+                  </nz-textarea-count>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <label nzFor="opis_kraci">Opis duzi</label>
+                  <nz-textarea-count>
+                    <textarea
+                      nzSize="large"
+                      formControlName="opis_duzi"
+                      id="opis_duzi"
+                      nz-input
+                    ></textarea>
+                  </nz-textarea-count>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <button
+              (click)="this.Nazad()"
+              nz-button
+              style="background-color: red"
+            >
+              <i
+                nz-icon
+                nzType="arrow-left"
+                style="color: black"
+                nzTheme="outline"
+              ></i>
+            </button>
+            <button
+              *ngIf="this.isNovaMuzej() === false"
+              (click)="this.AzurirajMuzej()"
+              nz-button
+              style="background-color: chartreuse"
+            >
+              <i
+                nz-icon
+                nzType="plus"
+                nzTheme="outline"
+                style="color: black"
+              ></i>
+            </button>
+            <button
+              *ngIf="this.isNovaMuzej() === true"
+              (click)="this.AzurirajMuzej()"
+              nz-button
+              style="background-color: yellow"
+            >
+              <i
+                nz-icon
+                nzType="edit"
+                style="color: black"
+                nzTheme="outline"
+              ></i>
+            </button>
+          </form>
+        </div>
+      </nz-spin>
+    </div>
+  </div>
+</div>

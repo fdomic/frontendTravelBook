@@ -14,7 +14,7 @@ import { PoznatuZnamenitostInterface } from 'src/app/interface/KreirajPoznatuZna
 export class DodajPoznateZnamenitostiCijenaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
-  public PoznataZnamenitostLista : Array<PoznatuZnamenitostInterface>
+  public PoznataZnamenitostLista: Array<PoznatuZnamenitostInterface>;
   public PotnateZnamenitostiCijenaLista: Array<PoznatuZnamenitostCijenaInterface> = [];
 
   public PoznateZnamenitostiCijenaUcitavanje: boolean = false;
@@ -62,12 +62,9 @@ export class DodajPoznateZnamenitostiCijenaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
-
-
     this.apiService.dohvatiPoznatuZnamenitost().subscribe(
       (response) => {
         this.PoznataZnamenitostLista = response.data;
-        
       },
       (error) => console.log(error)
     );

@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/api.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { MuzejInterface } from 'src/app/interface/KreirajMuzejInterface';
+import { GradInterface } from 'src/app/interface/KreirajGradInterface';
 
 @Component({
   selector: 'app-dodaj-muzeje',
@@ -14,6 +15,8 @@ import { MuzejInterface } from 'src/app/interface/KreirajMuzejInterface';
 export class DodajMuzejeComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public GradLista: Array<GradInterface> = [];
   public MuzejiLista: Array<MuzejInterface> = [];
 
   public MuzejUcitavanje: boolean = false;
@@ -57,6 +60,15 @@ export class DodajMuzejeComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+    this.apiService.dohvatiGrad().subscribe(
+      (response) => {
+        this.GradLista = response.data;
+      },
+
+      (error) => console.log(error)
+    );
+
     this.apiService.dohvatiMuzeje().subscribe(
       (response) => {
         this.MuzejiLista = response.data;
