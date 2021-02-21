@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/api.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DvoracInterface } from 'src/app/interface/KreirajDvoracInterface';
+import { GradInterface } from 'src/app/interface/KreirajGradInterface';
 
 @Component({
   selector: 'app-dodaj-dvorce',
@@ -15,6 +16,10 @@ export class DodajDvorceComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
   public DvoracLista: Array<DvoracInterface> = [];
+  public GradLista: Array<GradInterface> = [];
+
+
+  
 
   public DvoracUcitavanje: boolean = false;
   public Uspjesno: boolean = false;
@@ -58,6 +63,15 @@ export class DodajDvorceComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+    this.apiService.dohvatiGrad().subscribe(
+      (response) => {
+        this.GradLista = response.data;
+      },
+
+      (error) => console.log(error)
+    );
+
     this.apiService.dohvatiDvorce().subscribe(
       
       (response) => {

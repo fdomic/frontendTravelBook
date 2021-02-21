@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/api.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { KazalistaInterface } from 'src/app/interface/KreirajKazalistaInterface';
+import { GradInterface } from 'src/app/interface/KreirajGradInterface';
 
 @Component({
   selector: 'app-dodaj-kazalista',
@@ -14,8 +15,9 @@ import { KazalistaInterface } from 'src/app/interface/KreirajKazalistaInterface'
 export class DodajKazalistaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public GradLista: Array<GradInterface> = [];
   public KazalistaLista: Array<KazalistaInterface> = [];
-
   public KazalistaUcitavanje: boolean = false;
   public Uspjesno: boolean = false;
 
@@ -57,6 +59,15 @@ export class DodajKazalistaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+    this.apiService.dohvatiGrad().subscribe(
+      (response) => {
+        this.GradLista = response.data;
+      },
+
+      (error) => console.log(error)
+    );
+
     this.apiService.dohvatiKazalista().subscribe(
       (response) => {
         this.KazalistaLista = response.data;
