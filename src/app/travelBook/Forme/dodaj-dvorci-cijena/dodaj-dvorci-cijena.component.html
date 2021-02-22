@@ -1,83 +1,170 @@
 
 
-<nz-spin
-nzTip="Loading..."
-[nzSize]="'large'"
-[nzSpinning]="this.DvorciCijenaUcitavanje"
->
+
+
+
+
+
 <nz-result
-  *ngIf="this.Uspjesno === true"
-  nzStatus="success"
-  nzTitle="Uspjesno je spremljen podatak!"
-  nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
+*ngIf="this.Uspjesno === true"
+style="background-color: rgba(255, 255, 255, 0.6)"
+nzStatus="success"
+nzTitle="Uspjesno je spremljeno !"
+nzSubTitle="Ako zelite upisati još koji podatak stisnite lijevi gumb , za nazad stisnite desni"
 >
-  <div nz-result-extra>
-    <button nz-button (click)="this.Forma()">Forma</button>
-    <button nz-button (click)="this.Nazad()">Nazad</button>
-  </div>
+<div nz-result-extra>
+  <button nz-button (click)="this.Forma()">Forma</button>
+  <button nz-button (click)="this.Nazad()">Nazad</button>
+</div>
 </nz-result>
 
-<div class="container"  *ngIf="this.Uspjesno === false" >
-    <form nz-form [formGroup]="this.validateForm" >
-  
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id_dvorci">id_dvorci</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="id_dvorci" id="id_dvorci" />
-        </nz-form-control>
-      </nz-form-item>  
+<div class="wrapper" *ngIf="this.Uspjesno === false">
+<div class="title">
+  <h1>Dvorci cijena</h1>
+</div>
+<div class="contact-form">
+  <div class="input-fields">
+    <nz-spin
+      nzTip="Loading..."
+      [nzSize]="'large'"
+      [nzSpinning]="this.DvorciCijenaUcitavanje"
+    >
+      <div class="container">
+        <form nz-form [formGroup]="this.validateForm">
+          <div class="row">
+            <div class="col">
+
+              <nz-form-item>
+                <label nzFor="naziv_grada"
+                  >Dvorac</label
+                >
+                <select formControlName="id_poznate_znamenitosti">
+                  <option
+                  
+                  class="input"
+                    *ngFor="let dvorci of this.DvorciLista"
+                    [value]="dvorci.id"
+                    [label]="dvorci.ime_gradevine"
+                  >
+                  </option>
+                </select>
+              </nz-form-item>
         
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="karta">karta</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="karta" id="karta" />
-        </nz-form-control>
-      </nz-form-item>    
-  
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="opis">opis</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <input nz-input formControlName="opis" id="opis" />
-        </nz-form-control>
-      </nz-form-item>    
-  
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="trajanje_karte">trajanje_karte</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-            [(ngModel)]="ValueVrijemTrajanja"
-            [nzMin]="0"
-            [nzMax]="1000"
-            [nzStep]="1"
-            [nzFormatter]="formatterMIN"
-            [nzParser]="parserMIN"
-            formControlName="trajanje_karte"
-            id="trajanje_karte"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>    
-  
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="cijena">cijena</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
-          <nz-input-number
-          [(ngModel)]="ValueCijena"
-          [nzMin]="0"
-          [nzMax]="1000"
-          [nzStep]="0.1"
-          [nzFormatter]="formatterCijena"
-          [nzParser]="parserCijena"
-          formControlName="cijena"
-          id="cijena"
-          ></nz-input-number>
-        </nz-form-control>
-      </nz-form-item>    
-  
-    </form>
-  
-    <button (click)="this.Nazad()" nz-button class="login-form-button login-form-margin" style="background-color: blue;">Nazad</button>
-    <button *ngIf="this.isNoviDvoracCijena() === false" (click)="this.KreirajDvorciCijena()"nz-button class="login-form-button login-form-margin">Spremi</button>
-    <button *ngIf="this.isNoviDvoracCijena() === true" (click)="this.AzurirajDvorciCijena()" nz-button class="login-form-button login-form-margin" style="background-color: blueviolet;">Azuriraj</button>
-    
+              <nz-form-item>
+                <label nzFor="karta"
+                  >karta</label
+                >
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                  <input 
+                  
+                  
+                  class="input"
+                  nz-input formControlName="karta" id="karta" />
+                </nz-form-control>
+              </nz-form-item>
+        
+        
+              <nz-form-item>
+                <label nzFor="trajanje_karte"
+                  >trajanje_karte</label
+                >
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                  <nz-input-number
+                    [(ngModel)]="ValueVrijemTrajanja"
+                    [nzMin]="0"
+                    [nzMax]="1000"
+                    [nzStep]="1"
+                    [nzFormatter]="formatterMIN"
+                    [nzParser]="parserMIN"
+                    formControlName="trajanje_karte"
+                    id="trajanje_karte"
+                  ></nz-input-number>
+                </nz-form-control>
+              </nz-form-item>
+        
+              <nz-form-item>
+                <label  nzFor="cijena"
+                  >cijena</label
+                >
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                  <nz-input-number
+                    [(ngModel)]="ValueCijena"
+                    [nzMin]="0"
+                    [nzMax]="1000"
+                    [nzStep]="0.1"
+                    [nzFormatter]="formatterCijena"
+                    [nzParser]="parserCijena"
+                    formControlName="cijena"
+                    id="cijena"
+                  ></nz-input-number>
+                </nz-form-control>
+              </nz-form-item>
+
+              <label  nzFor="opis">opis</label>
+              <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Obavezan unos">
+                
+                  <nz-textarea-count>
+                    <textarea
+                      nzSize="large"
+                      formControlName="opis"
+                      id="opis"
+                      nz-input
+                    ></textarea>
+                  </nz-textarea-count>
+                
+                  </nz-form-control>
+
+              </nz-form-item>
+
+
+            </div>
+
+            
+          </div>
+
+          <button
+            (click)="this.Nazad()"
+            nz-button
+            style="background-color: red"
+          >
+            <i
+              nz-icon
+              nzType="arrow-left"
+              style="color: black"
+              nzTheme="outline"
+            ></i>
+          </button>
+          <button
+            *ngIf="this.isNoviDvoracCijena() === false"
+            (click)="this.AzurirajDvorciCijena()"
+            nz-button
+            style="background-color: chartreuse"
+          >
+            <i
+              nz-icon
+              nzType="plus"
+              nzTheme="outline"
+              style="color: black"
+            ></i>
+          </button>
+          <button
+            *ngIf="this.isNoviDvoracCijena() === true"
+            (click)="this.AzurirajDvorciCijena()"
+            nz-button
+            style="background-color: yellow"
+          >
+            <i
+              nz-icon
+              nzType="edit"
+              style="color: black"
+              nzTheme="outline"
+            ></i>
+          </button>
+        </form>
+      </div>
+    </nz-spin>
   </div>
-</nz-spin>
+</div>
+</div>
+

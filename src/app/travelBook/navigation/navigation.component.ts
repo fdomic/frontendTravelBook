@@ -75,8 +75,10 @@ export class NavigationComponent implements OnInit {
   public KluboviUcitavanje: boolean = false;
   public KluboviCijenaUcitavanje: boolean = false;
   public KluboviLista: Array<KluboviInterface> = [];
+  
+  public KluboviGradLista: Array<KluboviInterface> = [];
   public KluboviCijenaLista: Array<KlubCijenaInterface> = [];
-  public KluboviCijenaGradLista: Array<KluboviInterface> = [];
+  public KluboviCijenaGradLista: Array<KlubCijenaInterface> = [];
 
   //Kazalista
   public KazalistaUcitavanje: boolean = false;
@@ -160,6 +162,10 @@ export class NavigationComponent implements OnInit {
 
   public DvorciZaPrikaz(): Array<DvoracInterface> {
     return this.DvorciGradLista.slice(0, 5);
+  }
+
+  public KlubZaPrikaz(): Array<DvoracInterface> {
+    return this.KluboviGradLista.slice(0, 5);
   }
 
 // Dohvati sve podatke iz tablice
@@ -387,6 +393,14 @@ export class NavigationComponent implements OnInit {
         this.DvorciGradLista.push(this.DvorciLista[i]);
       }
     }
+
+    //KLUBOVI
+    this.KluboviGradLista = [];
+    for (const i in this.KluboviGradLista) {
+      if (this.KluboviGradLista[i].id_grada === this.Grad_id) {
+        this.KluboviGradLista.push(this.KluboviGradLista[i]);
+      }
+    }
   }
 
 // Puni formu
@@ -493,6 +507,31 @@ export class NavigationComponent implements OnInit {
     } else {
       console.log('[ERROR] Nisam pronašao !!!');
     }
+  }
+
+  public NadiKlub(id: number): any {
+    let model = this.KluboviLista.find((Klub) => Klub.id === id);
+    if (model) {
+
+      this.lista = [];
+      this.lista.push(model);
+
+      this.formaZnamenitost = false;
+      this. formaMuzej= false;
+      this. formaDvorci = true;
+      this. formaKazalista = false;
+
+      //KAZALISTE CIJENA
+      this.KluboviCijenaGradLista = [];
+      for (const i in this.KluboviCijenaLista) {
+        if (this.KluboviCijenaLista[i].id === id) {
+          this.KluboviCijenaGradLista.push(this.KluboviCijenaLista[i]);
+        }
+      }
+    } else {
+      console.log('[ERROR] Nisam pronašao !!!');
+    }
+  
   }
 
 //Poruka

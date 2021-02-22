@@ -16,6 +16,8 @@ export class DodajKazalisteCijenaComponent implements OnInit {
  
   public id ;
   public validateForm: FormGroup;
+  
+  public KazalisteLista: Array<KazalistaInterface> = [];
   public KazalisteCijenaLista: Array<KazalisteCijenaInterface> = [];
 
   public KazalistaCijenaUcitavanje: boolean = false;
@@ -66,6 +68,15 @@ export class DodajKazalisteCijenaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+    
+    this.apiService.dohvatiKazalista().subscribe(
+      (response) => {
+        this.KazalisteLista = response.data;
+      },
+      (error) => console.log(error)
+    );
+
     
       this.apiService.dohvatiKazalistaCijena().subscribe(
 

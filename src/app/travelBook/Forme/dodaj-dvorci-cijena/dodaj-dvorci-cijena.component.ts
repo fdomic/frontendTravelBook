@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from 'src/app/api.services';
 import { DvoracCijenaInterface } from 'src/app/interface/KreirajDvoracCijenaInterface';
+import { DvoracInterface } from 'src/app/interface/KreirajDvoracInterface';
 
 @Component({
   selector: 'app-dodaj-dvorci-cijena',
@@ -13,6 +14,8 @@ import { DvoracCijenaInterface } from 'src/app/interface/KreirajDvoracCijenaInte
 export class DodajDvorciCijenaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public DvorciLista: Array<DvoracInterface> = [];
   public DvorciCijenaLista: Array<DvoracCijenaInterface> = [];
 
   public DvorciCijenaUcitavanje: boolean = false;

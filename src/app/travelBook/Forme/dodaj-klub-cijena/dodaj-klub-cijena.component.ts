@@ -14,6 +14,8 @@ import { KluboviInterface } from 'src/app/interface/KreirajKlubInterface';
 export class DodajKlubCijenaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public KluboviLista: Array<KluboviInterface> = [];
   public KluboviCijenaLista: Array<KlubCijenaInterface> = [];
 
   public KluboviCijenaUcitavanje: boolean = false;
@@ -61,6 +63,16 @@ export class DodajKlubCijenaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+    this.apiService.dohvatiKlubove().subscribe(
+      (response) => {
+        this.KluboviLista = response.data;
+      },
+      (error) => console.log(error)
+    );
+
+
+
     this.apiService.dohvatiKluboviCijena().subscribe(
       (response) => {
         this.KluboviCijenaLista = response.data;

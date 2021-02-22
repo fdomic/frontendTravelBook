@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from 'src/app/api.services';
 import { MuzejiCijenaInterface } from 'src/app/interface/KreirajMuzejiCijenaInterface';
+import { MuzejInterface } from 'src/app/interface/KreirajMuzejInterface';
 
 @Component({
   selector: 'app-dodaj-muzej-cijena',
@@ -13,7 +14,11 @@ import { MuzejiCijenaInterface } from 'src/app/interface/KreirajMuzejiCijenaInte
 export class DodajMuzejCijenaComponent implements OnInit {
   public id;
   public validateForm: FormGroup;
+  
+  public MuzejiCijena: Array<MuzejInterface> = [];
   public MuzejiCijenaLista: Array<MuzejiCijenaInterface> = [];
+  
+ 
 
   public MuzejCijenaUcitavanje: boolean = false;
   public Uspjesno: boolean = false;
@@ -60,6 +65,16 @@ export class DodajMuzejCijenaComponent implements OnInit {
   }
 
   private dohvatiPodatke(): void {
+
+
+    this.apiService.dohvatiMuzeje().subscribe(
+      (response) => {
+        this.MuzejiCijena = response.data;
+      },
+      (error) => console.log(error)
+    );
+
+
     this.apiService.dohvatiMuzejiCijena().subscribe(
       (response) => {
         this.MuzejiCijenaLista = response.data;

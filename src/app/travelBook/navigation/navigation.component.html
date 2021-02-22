@@ -694,6 +694,158 @@
         </div>
       </div>
 
+      <!--Klubovi-->
+      <div id="7" class="divPage" *ngIf="this.UspjesnoNadengrad === true">
+        <!--Klubovi-->
+        <div class="divH1">
+          <h1>Klubovi</h1>
+        </div>
+
+        <div class="mainContRot">
+          <div
+            *ngFor="let klub of this.KlubZaPrikaz()"
+            class="cardRot middle"
+          >
+            <div
+              class="front"
+              [style]="
+                'background-image: url(' +
+                klub.slika +
+                '); background-size: cover;'
+              "
+            >
+              <div class="frontPanel">
+                <h1>{{ klub.ime_gradevine }}</h1>
+              </div>
+            </div>
+
+            <div class="back">
+              <div class="back-content middle">
+                <ul nz-list nzBordered nzSize="large">
+                  <li>
+                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                    <a>{{ klub.ime_gradevine }}</a>
+                  </li>
+
+                  <li>
+                    <i nz-icon nzType="calendar" nzTheme="outline"></i>
+                    <a>{{ klub.godina_izgradnje }}</a>
+                  </li>
+
+                  <li>
+                    <i nz-icon nzType="file-text" nzTheme="outline"></i>
+                    <a>{{ klub.opis_kraci }}</a>
+                  </li>
+
+                  <li>
+                    <i nz-icon nzType="comment" nzTheme="outline"></i>
+                    <a>{{ klub.adresa }}</a>
+                  </li>
+
+                  <li>
+                    <i nz-icon nzType="tag" nzTheme="outline"></i>
+                    <a>{{ klub.sluzbena_stranica }}</a>
+                  </li>
+                </ul>
+              </div>
+
+              <button style="margin-left: 120px; margin-top: -100px">
+                <a href="navigation#7/1" (click)="this.NadiKlub(klub.id)"
+                  >ISTRAŽI</a
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formaCont" id="7/1" *ngIf="this.formaDvorci === true">
+        <div
+          *ngFor="let klub of this.lista"
+          style="height: 100%; width: 100%"
+          [style]="
+            'background-image: url(' +
+            klub.slika +
+            '); background-size: cover;'
+          "
+        >
+          <div class="row">
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <div>
+                <ul>
+                  <li>
+                    <p>Ime: {{ klub.ime_gradevine }}</p>
+                  </li>
+
+                  <li>
+                    <p>Arhitekt: {{ klub.arhitekt }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Datum izgradnje: {{ klub.godina_izgradnje }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Adresa: {{ klub.adresa }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Stranica: {{ klub.sluzbena_stranica }}</p>
+                    <p></p>
+                  </li>
+
+                  <li>
+                    <p>Opis: {{ klub.opis_duzi }}</p>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col" style="background-color: rgba(1, 1, 1, 0.5)">
+              <nz-spin
+                nzTip="Loading..."
+                [nzSize]="'large'"
+                [nzSpinning]="this.DvorciCijenaUcitavanje"
+              >
+                <P>CIJENIK</P>
+                <nz-table
+                  #basicTable
+                  [nzData]="this.DvorciCijenaGradLista"
+                  style="width: 80%; margin-top: 5%; margin-left: 5%"
+                >
+                  <thead>
+                    <tr>
+                      <th>dvorci</th>
+                      <th>karta</th>
+                      <th>opis</th>
+                      <th>trajanje_karte</th>
+                      <th>cijena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dvorci of this.DvorciCijenaGradLista">
+                      <td>
+                        {{ this.getNaziv(dvorci.id_dvorci, 3) }}
+                      </td>
+                      <td>{{ dvorci.karta }}</td>
+                      <td>{{ dvorci.opis }}</td>
+                      <td>{{ dvorci.trajanje_karte }}</td>
+                      <td>{{ dvorci.cijena }}</td>
+                    </tr>
+                  </tbody>
+                </nz-table>
+              </nz-spin>
+            </div>
+          </div>
+
+          <a href="navigation#7">NAZAD</a>
+        </div>
+      </div>
+
       <div id="6" class="divPage">
         <!--O NAMA-->
         <h1>O nama</h1>
